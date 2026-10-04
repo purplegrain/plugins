@@ -1,0 +1,22 @@
+# PurpleGrain
+
+Connects Claude to your PurpleGrain account and checks an Australian livestock treatment before it is saved.
+
+## What you can do
+
+Ask in ordinary language. "I drenched the rams today with Startect, 20 mL a head, batch 123456." Claude finds the property and the mob, asks for anything still missing (batch, expiry, dose, withholding period, export interval, who treated), and shows you a short summary. Nothing is saved until you say yes.
+
+The check covers:
+
+- the fields Livestock Production Assurance expects on a treatment record
+- withholding (WHP) and export (ESI) end dates, worked out from the treatment date
+- a treatment dated after the product expired, or dated in the future
+- a second record of the same product on the same mob and the same day
+
+It is a completeness check. The product label and the APVMA list are the authority for dose and intervals.
+
+## Signing in
+
+Installing the plugin connects to PurpleGrain at `https://api.purplegrain.com/mcp`. The first time you use it, Claude asks you to sign in with your PurpleGrain account. This plugin does not store a password.
+
+A property on your personal account is listed on its own. A property owned by a business is listed with that business. If a farm you expect is missing, say which business it belongs to.

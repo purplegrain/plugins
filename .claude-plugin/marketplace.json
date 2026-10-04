@@ -1,0 +1,15 @@
+{
+  "name": "purplegrain",
+  "description": "PurpleGrain plugins for Australian farm records",
+  "owner": {
+    "name": "PurpleGrain Pty Ltd",
+    "url": "https://purplegrain.com"
+  },
+  "plugins": [
+    {
+      "name": "purplegrain",
+      "source": "./purplegrain",
+      "description": "Connect PurpleGrain and keep LPA-ready drench and treatment records"
+    }
+  ]
+}

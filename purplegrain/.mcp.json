@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "purplegrain": {
+      "type": "http",
+      "url": "https://api.purplegrain.com/mcp"
+    }
+  }
+}

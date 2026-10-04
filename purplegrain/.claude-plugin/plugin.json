@@ -1,0 +1,11 @@
+{
+  "name": "purplegrain",
+  "displayName": "PurpleGrain",
+  "description": "Connect PurpleGrain (properties, paddocks, mobs, records) and check Australian drench records for LPA compliance before saving.",
+  "author": {
+    "name": "PurpleGrain Pty Ltd"
+  },
+  "homepage": "https://purplegrain.com",
+  "repository": "https://github.com/purplegrain/plugins",
+  "license": "MIT"
+}
