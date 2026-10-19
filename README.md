@@ -6,7 +6,7 @@ PurpleGrain is farm software for Australian properties, paddocks, mobs and recor
 
 | Plugin | What it does |
 |---|---|
-| [purplegrain](purplegrain/) | Connects the PurpleGrain MCP server and checks a livestock treatment or sheep husbandry record for LPA completeness before it is saved. |
+| [purplegrain](purplegrain/) | Connects the PurpleGrain MCP server and checks a livestock treatment, sheep husbandry record or paddock spray for completeness before it is saved. |
 
 ## Install in Claude Code
 
@@ -19,7 +19,7 @@ Signing in uses PurpleGrain's own login. This repository has no tokens and no cu
 
 ## Install the skill in the Claude app
 
-Download `au-mob-treatment-records.zip` from the [latest GitHub Release](https://github.com/purplegrain/plugins/releases) and upload it as a custom skill. That zip is the treatment and sheep husbandry checklist. The connector (properties, mobs and saving) comes with the Claude Code plugin above.
+Download a skill zip from the [latest GitHub Release](https://github.com/purplegrain/plugins/releases) and upload it as a custom skill. `au-mob-treatment-records.zip` is the treatment and sheep husbandry checklist. `au-spray-records.zip` is the paddock spray checklist. The connector (properties, mobs, paddocks and saving) comes with the Claude Code plugin above.
 
 Releases before this change published `au-drench-records.zip`. Replace that custom skill with `au-mob-treatment-records.zip`. Keeping both installed makes the same drench request match two skills.
 

@@ -1,6 +1,6 @@
 # PurpleGrain
 
-Connects Claude to your PurpleGrain account and checks an Australian livestock treatment or sheep husbandry record before it is saved.
+Connects Claude to your PurpleGrain account and checks an Australian livestock treatment, sheep husbandry record or paddock spray before it is saved.
 
 ## What you can do
 
@@ -16,6 +16,8 @@ The check covers:
 - what to note for a wool declaration, a sheep health declaration, or an NLIS movement, where PurpleGrain has no field for it
 
 It is a completeness check. The product label and the APVMA list are the authority for dose and intervals. The state rule can be stricter than the national sheep standard.
+
+The same check applies to a paddock spray. "I boom sprayed the canola in North, 3 litres of atrazine a hectare, batch 123456." Claude finds the paddock, asks for anything still missing (rate unit, batch, grazing and harvest intervals, wind, who sprayed), and shows a short summary before anything is saved. A spot spray is not saved as the whole paddock unless that is the area sprayed.
 
 ## Signing in
 
