@@ -9,7 +9,7 @@
     {
       "name": "purplegrain",
       "source": "./purplegrain",
-      "description": "Connect PurpleGrain and keep LPA-ready treatment and paddock spray records"
+      "description": "Connect PurpleGrain and keep LPA-ready livestock treatment, sheep husbandry and paddock spray records"
     }
   ]
 }
