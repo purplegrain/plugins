@@ -1,0 +1,21 @@
+name: Runner test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: [self-hosted, purplegrain-runner]
+    steps:
+      - name: Echo success and runner details
+        env:
+          RUNNER_CONTEXT: ${{ toJSON(runner) }}
+        run: |
+          echo success
+          echo "runner name: ${RUNNER_NAME:-}"
+          echo "runner os: ${RUNNER_OS:-}"
+          echo "runner arch: ${RUNNER_ARCH:-}"
+          echo "runner environment: ${RUNNER_ENVIRONMENT:-}"
+          echo "runner labels: ${RUNNER_LABELS:-not set}"
+          echo "runner context: ${RUNNER_CONTEXT}"
+          uname -srm || true

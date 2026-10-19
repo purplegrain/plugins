@@ -12,9 +12,8 @@ permissions:
 jobs:
   validate:
     # Node is installed by setup-node; bash and zip are already on the Mac.
-    # Org runner purplegrain-openclaw (id 47) did not take a bare
-    # `self-hosted` label or its name alone.
-    runs-on: [self-hosted, purplegrain-openclaw]
+    # The org Mac is re-registered as purplegrain-runner.
+    runs-on: [self-hosted, purplegrain-runner]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -36,7 +35,7 @@ jobs:
   release:
     if: startsWith(github.ref, 'refs/tags/')
     needs: validate
-    runs-on: [self-hosted, purplegrain-openclaw]
+    runs-on: [self-hosted, purplegrain-runner]
     permissions:
       contents: write
     steps:
