@@ -13,7 +13,7 @@ jobs:
   validate:
     # Node is installed by setup-node; bash and zip are already on the Mac.
     # The org Mac is re-registered as purplegrain-runner.
-    runs-on: [self-hosted, purplegrain-runner]
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
