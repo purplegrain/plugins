@@ -5,7 +5,7 @@ on:
 
 jobs:
   ping:
-    runs-on: [self-hosted, purplegrain-runner]
+    runs-on: self-hosted
     steps:
       - name: Echo success and runner details
         env:
