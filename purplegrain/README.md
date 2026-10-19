@@ -1,19 +1,21 @@
 # PurpleGrain
 
-Connects Claude to your PurpleGrain account and checks an Australian livestock treatment before it is saved.
+Connects Claude to your PurpleGrain account and checks an Australian livestock treatment or sheep husbandry record before it is saved.
 
 ## What you can do
 
-Ask in ordinary language. "I drenched the rams today with Startect, 20 mL a head, batch 123456." Claude finds the property and the mob, asks for anything still missing (batch, expiry, dose, withholding period, export interval, who treated), and shows you a short summary. Nothing is saved until you say yes.
+Ask in ordinary language. "I drenched the rams today with Startect, 20 mL a head, batch 123456." Or "We marked 400 lambs, rings, and mulesed them with pain relief." Claude finds the property and the mob, asks for anything still missing (batch, expiry, dose, withholding period, export interval, who treated, and for sheep the procedure and the pain relief), and shows you a short summary. Nothing is saved until you say yes.
 
 The check covers:
 
 - the fields Livestock Production Assurance expects on a treatment record
-- withholding (WHP) and export (ESI) end dates, worked out from the treatment date
+- withholding (WHP), export (ESI) and wool-interval end dates, worked out from the treatment date
 - a treatment dated after the product expired, or dated in the future
-- a second record of the same product on the same mob and the same day
+- a second record of the same product, or the same husbandry procedures, on the same mob and the same day
+- sheep marking, mulesing, tail docking, castration, tagging, crutching, shearing, scanning and weaning, against the national sheep welfare standards
+- what to note for a wool declaration, a sheep health declaration, or an NLIS movement, where PurpleGrain has no field for it
 
-It is a completeness check. The product label and the APVMA list are the authority for dose and intervals.
+It is a completeness check. The product label and the APVMA list are the authority for dose and intervals. The state rule can be stricter than the national sheep standard.
 
 ## Signing in
 

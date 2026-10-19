@@ -1,7 +1,7 @@
 {
   "name": "purplegrain",
   "displayName": "PurpleGrain",
-  "description": "Connect PurpleGrain (properties, paddocks, mobs, records) and check Australian drench records for LPA compliance before saving.",
+  "description": "Connect PurpleGrain (properties, paddocks, mobs, records) and check Australian livestock treatment and sheep husbandry records for LPA completeness before saving.",
   "author": {
     "name": "PurpleGrain Pty Ltd"
   },
