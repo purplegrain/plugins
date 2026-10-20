@@ -7,12 +7,18 @@ the skill zips published on GitHub Releases. See [README.md](README.md).
 ## Check a change
 
 ```bash
+bash scripts/verify.sh                 # all three below, one verdict
 claude plugin validate .               # the marketplace
 claude plugin validate ./purplegrain   # the plugin
 bash scripts/build-skill-zips.sh       # dist/<skill>.zip, one per skill
 ```
 
-These are the steps the `Validate` workflow runs on every pull request.
+These are the steps the `Validate` workflow runs on every pull request, on a
+GitHub-hosted runner with Claude Code pinned (`validate.yml`).
+
+This repository is public. Pull-request workflows run on GitHub-hosted runners
+only; never point a `pull_request` job at `self-hosted`, because a fork's code
+would run on the org Mac. Only the tag-triggered `release` job uses the Mac.
 
 ## Shipping
 

@@ -11,16 +11,20 @@ permissions:
 
 jobs:
   validate:
-    # Node is installed by setup-node; bash and zip are already on the Mac.
-    # The org Mac is re-registered as purplegrain-runner.
-    runs-on: self-hosted
+    # GitHub-hosted, not the org Mac: this repository is public, so a pull
+    # request from a fork runs here, and a fork's code must never run on our own
+    # machine. It is also the required check, so it cannot wait on the Mac being
+    # online. (A public repository's hosted minutes are free.)
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
       - name: Install Claude Code
-        run: npm install -g @anthropic-ai/claude-code
+        # Pinned so a new Claude Code release cannot change what passes; bump it
+        # deliberately.
+        run: npm install -g @anthropic-ai/claude-code@2.1.292
       - name: Validate the marketplace
         run: claude plugin validate .
       - name: Validate the PurpleGrain plugin
