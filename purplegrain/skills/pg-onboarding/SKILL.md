@@ -72,24 +72,24 @@ Fail while you have not asked individual versus organisation. A signed-in user i
 
 ## Step 2 — Properties and PIC
 
-Ask: "What's the first property called?" Then: "What's its PIC? It's on your LPA or NLIS paperwork. We can leave it if you don't have it handy." Then: "Which state is it in?" Accept NSW, VIC, QLD, SA, WA, TAS, NT, ACT. Then: "Any other property, including country you lease?"
+Ask: "What's the first property called?" Then: "What's its PIC? It's on your LPA or NLIS paperwork. We can leave it if you don't have it handy." Then: "What's its address, including the state?" Then: "Any other property, including country you lease?"
 
 Do not check the PIC against a pattern. There is no format check in this skill. If they are unsure, ask them to read it again. Do not reject it. Do not look a PIC up on WA Brands Search, or on any other public register. The PIC is what they read to you.
 
 `createProperty` with `name`, on the personal account or the chosen organisation. Send `pic` when they gave one. #239 and #240 add `pic` as a nullable column. Omit it when they do not have it; null is "not recorded". Do not put the PIC in `location` or `place_label`. `location` may hold the town-and-state caption they want shown ("Currawarna NSW"). Say that caption is not the PIC.
 
-#239 and #240 do not name a `state` column. Do not send `state`. Keep the state they told you: parcel search needs it. If `createProperty` rejects `pic` as an unknown attribute, the connector has not picked up the column. Create the property with the name, keep the PIC in the conversation, and say it is not on this connector yet.
+The server derives read-only `state` from saved `place_label`, or from `location` when `place_label` is blank. Save the address they confirmed in `place_label` (or their town-and-state caption in `location`), then read the returned state. Do not ask for or send an independent `state` field, and do not infer it from a PIC or a map point. If the address is unknown, leave it unset and say parcel search needs a saved address naming the state. If `createProperty` rejects `pic` as an unknown attribute, the connector has not picked up the column. Create the property with the name, keep the PIC in the conversation, and say it is not on this connector yet.
 
 `visibility` stays unset or `private`.
 
-One confirm per property: "Create '{name}' in {state}, PIC as you read it, on {owner}?"
+One confirm per property: "Create '{name}' at {address or not recorded}, PIC as you read it, on {owner}?"
 
 ### Done when
 
 Pass if `completed_steps` contains `create_property`, or:
 
 - At least one property exists for the owner they chose, and
-- For every property created or claimed in this setup, you asked for the PIC and the state, and the PIC is either stored or explicitly left unset.
+- For every property created or claimed in this setup, you asked for the PIC and the address, and the PIC is either stored or explicitly left unset.
 
 Fail while the chosen owner has no property and they have not said they will add one later. "Later" pauses setup. It does not fail the account.
 
@@ -97,7 +97,7 @@ Fail while the chosen owner has no property and they have not said they will add
 
 Do this after the property exists and before paddocks. For each property, one of these finishes the step: a parcel is attached, the property already has paddocks, or the property is in a state with no parcel search. The step is done when every property in this setup meets one of those.
 
-Ask the state before you search. Supported cadastres: NSW, VIC, QLD, TAS. SA, WA, NT and ACT return `422` `parcel_search_unsupported`. Do not call `searchParcels` for those four. Tell them parcel search does not cover that state, and offer a drawn outline with `updatePropertyBoundary`. That offer completes the step for an unsupported state even if they draw it later.
+Read the property's server-derived `state` before you search. If it is missing, ask for a corrected address, confirm an `updateProperty` of `place_label` or `location`, and read the property back. A search address or point does not set the property's state. Supported cadastres: NSW, VIC, QLD, TAS. SA, WA, NT and ACT return `422` `parcel_search_unsupported`. Do not call `searchParcels` for those four. Tell them parcel search does not cover that state, and offer a drawn outline with `updatePropertyBoundary`. That offer completes the step for an unsupported state even if they draw it later.
 
 ### Search and attach
 
@@ -117,7 +117,7 @@ Match the `code`. Do not retry the same call unchanged.
 
 | `code` | What to do |
 |---|---|
-| `parcel_search_state_required` | You do not have a state the search can use. Ask which state the property is in, then search again with that state in the address, or with a point. Do not invent a `state` attribute. |
+| `parcel_search_state_required` | Ask for the property's address including its state. Confirm and save the corrected `place_label` (or `location` when no `place_label` is set) with `updateProperty`, then read its derived `state` before searching again. A search address or point alone cannot repair this. Do not send a `state` attribute. |
 | `parcel_search_unsupported` | SA, WA, NT or ACT. Stop searching. Offer `updatePropertyBoundary`. |
 | `parcel_geocode_unavailable` | The address lookup is down. Ask for a latitude and longitude, or leave the boundary for later. Do not invent a point. |
 | `parcel_geocode_failed` | That address did not geocode. Ask them to say it again, or give a point. |
@@ -183,11 +183,11 @@ Ask: "What mobs are on {property}? For each one: the name you use, the species, 
 
 No livestock: "No stock is fine. We'll skip mobs and record a paddock job instead." That completes this step.
 
-`createMob` with `name` and `head_count` when they gave a count. #239 adds nullable `stock` on the mob. Send `stock` as the species and class in their words (`Merino ewes`). Do not also send `species`, `class`, `breed`, `sex` or `birth_year`. Names are unique per property, including archived mobs. A new mob is not in a paddock until `moveMob`.
+`createMob` with `name` and `head_count` when they gave a count. Optional stock fields are `species` (`sheep`, `cattle`, `goat`), `stock_class` (their free-text class, such as `Merino ewes`), `sex` (`female`, `male`, `mixed`), `birth_year` (an integer from 1901 to 2100) and `eid_status` (`visual`, `eid`, `device_free`). Send only values they supplied and confirmed; unknown values stay unset. Do not send `stock`, `class` or `breed`, and do not infer sex or birth year from a name or class. Names are unique per property, including archived mobs. A new mob is not in a paddock until `moveMob`.
 
-If the connector rejects `stock`, create the mob with the name and head count, put the species and class in the name, and say this connector has not picked up the column.
+If a connector does not expose these optional fields, explain what cannot be stored and confirm a name-and-count-only create before proceeding. Do not rename the mob to hide unstored fields, and read it back before claiming they were saved.
 
-NLIS or eID status is not a mob column. Keep the answer for the summary. Offer an eID tagging record later through `au-mob-husbandry-records` if they want it stored. Do not pretend `createMob` wrote the NLIS database.
+`eid_status` records the identification status they state. Do not map "not tagged yet" to `device_free`; that is a distinct status and must be confirmed. Offer an eID tagging record later through `au-mob-husbandry-records` when they want to record actual tagging work. Neither saving the mob's status nor a tagging record writes the NLIS database.
 
 `moveMob` places the mob: the mob's id, `to_paddock`, `capture_source: "agent"`, and `completed_at` only when they are recording a past move. The destination has to be a live paddock on the same property. If they do not know the paddock, leave the mob unplaced and say so. Its own confirm: "Put {mob} in {paddock}?"
 
@@ -224,7 +224,7 @@ When all seven of `create_team`, `create_property`, `map_boundaries`, `map_paddo
 |---|---|---|
 | Business | `createBusiness` | The name |
 | Invite | `createBusinessMember` | Email or mobile, and the permission. Say that a message is sent |
-| Property | `createProperty` | Name, the state they gave, `pic` as read, owner |
+| Property | `createProperty` | Name, saved address or caption, `pic` as read, owner |
 | Find parcels | `searchParcels` | Address, or the point. No confirm; it is a read |
 | Parcels on the property | `listPropertyParcels` | A read |
 | Attach parcels | `attachParcelsToProperty` | The parcels, by the labels from the search. `external_ids` only |
@@ -232,7 +232,7 @@ When all seven of `create_team`, `create_property`, `map_boundaries`, `map_paddo
 | Draw the outline | `updatePropertyBoundary` | That you are saving a ring they supplied, or that you are not inventing one |
 | Paddock | `createPaddock` | Name, hectares, `tenure` (`owned` or `leased`), `parcel_id` when it sits on one attached parcel |
 | Block | `createBlock` | Name, kind, paddock names |
-| Mob | `createMob` | Name, `stock`, head |
+| Mob | `createMob` | Name, head and the optional species, class, sex, birth year and identification status they supplied |
 | Place a mob | `moveMob` | Mob and paddock |
 
-Read the created property, paddock or mob back before telling them `pic`, `tenure` or `stock` was stored. If a write times out, list that owner's properties, paddocks or mobs before retrying. Do not send `Idempotency-Key` on these tools, or on the parcel tools. The schemas reviewed for the account tools do not have it, and #241/#242 do not add it.
+Read the created property, paddock or mob back before telling them `pic`, `tenure` or the optional mob fields were stored. If a write times out, list that owner's properties, paddocks or mobs before retrying. Do not send `Idempotency-Key` on these tools, or on the parcel tools. The schemas reviewed for the account tools do not have it, and #241/#242 do not add it.

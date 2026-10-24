@@ -81,7 +81,7 @@ Wait for a yes.
 
 ## 6. Save and read back
 
-`createSprayRecord`: `paddock_id`, `confirm: true`, `body.data.type: "spray-record"`. A completed spray needs at least one product. The server sets `operation_type: spray`, `capture_source: agent` and `producer`. The create schema reviewed on 24 Oct 2026 does not take `operator` or `record_notes`. This tool accepts `Idempotency-Key`.
+`createSprayRecord`: `paddock_id`, `confirm: true`, `body.data.type: "spray-record"`. A completed spray needs at least one product. The server sets `operation_type: spray`, `capture_source: agent` and `producer`. Send confirmed `operator`, `record_notes` and `tags` in `body.data.attributes` with the spray; an omitted or blank operator defaults to the signed-in user's display name. This tool accepts `Idempotency-Key`.
 
 `updateSprayRecord` uses `spray.id`, not the task id. `products` and `weather_readings` each replace the whole set.
 

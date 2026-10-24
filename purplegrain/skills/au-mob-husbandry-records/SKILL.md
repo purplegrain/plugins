@@ -11,7 +11,7 @@ This is a record of what was done. It is not veterinary or welfare advice. Where
 
 A product used on the day (vaccine, pain relief, jetting fluid) is a product line on this record. Do not also save a treatment for it.
 
-Species and class are the mob's `stock` text when that column is set (API #239), for example "Merino ewes". There is no separate `species` field. If `stock` is empty, ask. Do not invent the species from the mob name alone when the name does not say it.
+Read species from the mob's optional `species` (`sheep`, `cattle`, `goat`) and class from `stock_class` (free text, for example "Merino ewes"). If either is missing, ask. Do not invent species from the mob name or class. Optional `sex`, `birth_year` and `eid_status` describe the mob; they are not husbandry record attributes.
 
 ## 1. Choose the record
 
@@ -100,6 +100,6 @@ Checks: pain relief is on the record; one palpable tail joint not confirmed; NWD
 Save this record?
 ```
 
-`createHusbandryRecord` with `body.data.type: "husbandry-record"`, `confirm: true` only after the yes. Nest outcomes as `outcomes.mark.lambs_marked`. The server sets producer, operator and `capture_source: agent`. This tool accepts `Idempotency-Key`. Do not send `broadcast` or `share_scope`. Notes follow `pg-core`. If the write fails, read the mob's records before retrying.
+`createHusbandryRecord` with `body.data.type: "husbandry-record"`, `confirm: true` only after the yes. Nest outcomes as `outcomes.mark.lambs_marked`. The server sets producer and `capture_source: agent`. Send confirmed `operator`, `record_notes` and `tags` in `body.data.attributes` with the record; an omitted or blank operator defaults to the signed-in user's display name. This tool accepts `Idempotency-Key`. Do not send `broadcast` or `share_scope`. Notes follow `pg-core`. If the write fails, read the mob's records before retrying.
 
 `getMob.withholding` includes husbandry products. A husbandry with no product has no row on `getTreatmentRegister` `kind: "register"`. Say what was saved and which welfare or eID check is still open.

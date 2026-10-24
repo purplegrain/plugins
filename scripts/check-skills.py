@@ -175,7 +175,11 @@ def main() -> int:
             "updatePropertyBoundary",
             "tenure",
             "`pic`",
-            "`stock`",
+            "`species`",
+            "`stock_class`",
+            "`sex`",
+            "`birth_year`",
+            "`eid_status`",
         ):
             if token not in body:
                 fail(errors, f"pg-onboarding: missing {token}")
