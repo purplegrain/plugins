@@ -21,7 +21,7 @@ If the write fails, `listMobs` or `getMob` before retrying. Do not send `Idempot
 
 ## 2. Off the PIC
 
-There is no off-property movement record and, on the schema reviewed 24 Oct 2026, no PIC on the property. Do not call `moveMob` for a sale or agistment. That would place the mob in a paddock. Do not set `operation_type` to `move_stock` on a task. That type is the on-property move.
+There is no off-property movement record. The property's PIC is `pic` (API #239/#240). Read it from the property. Null means not recorded. Do not copy `location` into the destination PIC, and do not look a PIC up on WA Brands Search. Do not call `moveMob` for a sale or agistment. That would place the mob in a paddock. Do not set `operation_type` to `move_stock` on a task. That type is the on-property move.
 
 Store a plain task: `createTask`, asset the mob, `producer` set to the business when the property belongs to one, `capture_source: "agent"`, `status: "completed"`, `created_as: "record"`, description such as "Sale of ewes", and the facts in `record_notes`. `confirm: true`. Tell them this did not transfer the stock on NLIS and did not move the pin on the map.
 

@@ -19,7 +19,7 @@ Signing in uses PurpleGrain's own login. This repository has no tokens and no cu
 
 ## Install the skill in the Claude app
 
-Download a skill zip from the [latest GitHub Release](https://github.com/purplegrain/plugins/releases) and upload it as a custom skill. The [catalogue](purplegrain/CATALOGUE.md) is the list. Record skills are the ones a farmer asks for (`au-mob-treatment-records`, `au-mob-husbandry-records`, `au-spray-records`, and the sowing, fertiliser, field work, movement, feeding and export skills). Line-item zips (`li-*`) are checks those record skills use. They are not separate jobs. `pg-onboarding` is farm setup (`pg-onboarding@1`). `pg-core` is the shared confirm and disclaimer.
+Download a skill zip from the [latest GitHub Release](https://github.com/purplegrain/plugins/releases) and upload it as a custom skill. The [catalogue](purplegrain/CATALOGUE.md) is the list. Record skills are the ones a farmer asks for (`au-mob-treatment-records`, `au-mob-husbandry-records`, `au-spray-records`, and the sowing, fertiliser, field work, movement, feeding and export skills). Line-item zips (`li-*`) are checks those record skills use. They are not separate jobs. `pg-onboarding@1` is farm setup, at [purplegrain/skills/pg-onboarding/SKILL.md](purplegrain/skills/pg-onboarding/SKILL.md). `pg-core` is the shared confirm and disclaimer.
 
 The connector (properties, mobs, paddocks and saving) comes with the Claude Code plugin above. Other agents can use the same `SKILL.md` text. Whether Cursor installs this repository as a Claude plugin was not verified.
 

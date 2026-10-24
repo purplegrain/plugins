@@ -9,7 +9,7 @@
     {
       "name": "purplegrain",
       "source": "./purplegrain",
-      "description": "Connect PurpleGrain and keep Australian farm records: setup, livestock, sprays, sowing, fertiliser, field work and movements"
+      "description": "Connect PurpleGrain and keep Australian farm records. Setup skill pg-onboarding@1 is purplegrain/skills/pg-onboarding/SKILL.md. Also livestock, sprays, sowing, fertiliser, field work and movements."
     }
   ]
 }

@@ -11,6 +11,8 @@ This is a record of what was done. It is not veterinary or welfare advice. Where
 
 A product used on the day (vaccine, pain relief, jetting fluid) is a product line on this record. Do not also save a treatment for it.
 
+Species and class are the mob's `stock` text when that column is set (API #239), for example "Merino ewes". There is no separate `species` field. If `stock` is empty, ask. Do not invent the species from the mob name alone when the name does not say it.
+
 ## 1. Choose the record
 
 | What happened | `procedures` | Outcomes | Also |

@@ -1,6 +1,6 @@
 # PurpleGrain
 
-Connects your assistant to your PurpleGrain account. On a new account it offers to set the farm up (who records, the property and its PIC and state, paddocks and blocks, mobs, then one real record). After that it checks a record before saving it: a treatment, a husbandry job, a spray, a sowing, a fertiliser, field work, a stock move, or feed brought in.
+Connects your assistant to your PurpleGrain account. On a new account it offers to set the farm up (who records, the property and its PIC, the boundary where parcel search covers the state, paddocks and blocks, mobs, then one real record). The setup skill is `pg-onboarding@1` at [skills/pg-onboarding/SKILL.md](skills/pg-onboarding/SKILL.md). After that it checks a record before saving it: a treatment, a husbandry job, a spray, a sowing, a fertiliser, field work, a stock move, or feed brought in.
 
 The skill list is [CATALOGUE.md](CATALOGUE.md).
 

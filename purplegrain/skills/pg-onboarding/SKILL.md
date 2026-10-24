@@ -1,19 +1,19 @@
 ---
 name: pg-onboarding
-description: "Set up a PurpleGrain account in conversation: individual or organisation and team, properties with PIC and state, paddocks or leased areas and blocks, mobs, then one real record. Use when the farmer wants the farm set up, or when pg-core finds onboarding not started or in progress. Version pg-onboarding@1. A suggestion, never a block on reading records."
+description: "Set up a PurpleGrain account in conversation: individual or organisation and team, properties with a PIC, parcel boundaries where the state has a cadastre, paddocks with tenure and blocks, mobs, then one real record. Use when the farmer wants the farm set up, or when pg-core finds onboarding not started or in progress. Version pg-onboarding@1. A suggestion, never a block on reading records."
 ---
 
 # Set up the farm
 
-Version `pg-onboarding@1` (skill version 1.0.0).
+Version `pg-onboarding@1` (skill version 1.1.0).
 
 Follow `pg-core` for the disclaimer, the confirm rule and how to read metadata. This skill creates the account structure. The first real record is saved by the matching record skill, not by a dummy write here.
 
-This sets up records. It is not legal, financial or farm-business advice. A PIC is private: leave the property `visibility` unset or `private`. Do not put a PIC on a public page.
+This sets up records. It is not legal, financial or farm-business advice. A PIC is private: leave the property `visibility` unset or `private`. Do not put a PIC on a public page, and do not look a PIC up on WA Brands Search.
 
-The same text is what the connector should serve as the prompt `setup-my-farm` and the resource `purplegrain://skills/pg-onboarding`.
+The same text is what the connector should serve as the prompt `setup-my-farm` and the resource `purplegrain://skills/pg-onboarding`. The file those names must resolve to is `purplegrain/skills/pg-onboarding/SKILL.md` in this repository, listed in `purplegrain/CATALOGUE.md` and `purplegrain/skills/index.json`. Its public URL is `https://github.com/purplegrain/plugins/blob/main/purplegrain/skills/pg-onboarding/SKILL.md`.
 
-**Not confirmed (24 Oct 2026).** Those prompt and resource names are the onboarding spec of that date. The connector reviewed the same day did not advertise them. No separate onboarding tool names were in that spec or in the connector. Use the tools named below. If a later connector tool's description says it is the onboarding step for team, property, paddock, block or mob, prefer that tool and still collect the same facts. Do not invent a tool name.
+API #240 is the onboarding guidance (`meta.onboarding` / `_meta.onboarding`, skill `pg-onboarding@1`). API #239 adds the nullable columns below. API #241 and #242 are the parcel search and the parcel picker. If a tool named here is missing from the connector, say that connector has not picked up the PR yet. Do not invent a replacement tool, and do not use WA Brands Search to fill the gap.
 
 ## How to resume
 
@@ -22,26 +22,28 @@ Read `meta.onboarding` or `_meta.onboarding` as `pg-core` describes. The server'
 | `next_step` | Step |
 |---|---|
 | `create_team` | 1. Individual or organisation, and the team |
-| `create_property` | 2. Properties, PIC and state |
-| `map_paddocks` | 3. Paddocks and areas, owned or leased |
+| `create_property` | 2. Properties and PIC |
+| `map_boundaries` | 2b. Parcels, or a drawn boundary. After the property, before paddocks |
+| `map_paddocks` | 3. Paddocks, tenure, and areas |
 | `create_blocks` | 3. Blocks, after the paddocks exist |
 | `add_mobs` | 4. Mobs |
 | `first_record` | 5. One real record |
 
 If they jump ahead ("just add the ewes"), do that step, then offer the skipped ones. Do not refuse. If they ask to record a job and the mob or paddock already exists, record it and let setup wait. If it does not exist, create that asset with them (the step below) and then the record. Never block a read because setup is unfinished.
 
-Offer in the farmer's words, one or two questions at a time. Confirm before each write (`confirm: true`). A yes to "keep going" is not a yes to a particular property or invite.
+Offer in the farmer's words, one or two questions at a time. Confirm before each write (`confirm: true`). A yes to "keep going" is not a yes to a particular property, parcel, or invite.
 
 ### When the metadata is absent
 
-**Not confirmed (24 Oct 2026).** The live responses reviewed that day had no onboarding block. Infer, and say you are inferring. First incomplete step in this order:
+#240 puts the block on responses. If this response has none, the connector has not picked up that PR. Say you are inferring. First incomplete step in this order:
 
 1. `create_team` — you have not asked individual versus organisation.
 2. `create_property` — the chosen owner has no property.
-3. `map_paddocks` — a property has no paddock, and they have not said it is one area.
-4. `create_blocks` — paddocks exist and you have not asked whether any are grouped.
-5. `add_mobs` — you have not asked about livestock.
-6. `first_record` — structure exists and they have no completed record they confirmed in this setup.
+3. `map_boundaries` — a property has no attached parcel and no paddock, and it is not in a state where parcel search is unsupported.
+4. `map_paddocks` — a property has no paddock, and they have not said it is one area.
+5. `create_blocks` — paddocks exist and you have not asked whether any are grouped.
+6. `add_mobs` — you have not asked about livestock.
+7. `first_record` — structure exists and they have no completed record they confirmed in this setup.
 
 Stop inferring a step the farmer has already answered in the conversation.
 
@@ -68,15 +70,15 @@ Pass if `completed_steps` contains `create_team`, or all of these are true:
 
 Fail while you have not asked individual versus organisation. A signed-in user is not this step.
 
-## Step 2 — Properties, PIC and state
+## Step 2 — Properties and PIC
 
 Ask: "What's the first property called?" Then: "What's its PIC? It's on your LPA or NLIS paperwork. We can leave it if you don't have it handy." Then: "Which state is it in?" Accept NSW, VIC, QLD, SA, WA, TAS, NT, ACT. Then: "Any other property, including country you lease?"
 
-Do not check the PIC against a pattern. There is no confirmed format in this skill. If they are unsure, ask them to read it again. Do not reject it.
+Do not check the PIC against a pattern. There is no format check in this skill. If they are unsure, ask them to read it again. Do not reject it. Do not look a PIC up on WA Brands Search, or on any other public register. The PIC is what they read to you.
 
-`createProperty` with `name`, on the personal account or the chosen organisation. Send `pic` and `state` on that create when the tool accepts them. That is the agreed contract.
+`createProperty` with `name`, on the personal account or the chosen organisation. Send `pic` when they gave one. #239 and #240 add `pic` as a nullable column. Omit it when they do not have it; null is "not recorded". Do not put the PIC in `location` or `place_label`. `location` may hold the town-and-state caption they want shown ("Currawarna NSW"). Say that caption is not the PIC.
 
-**Not confirmed (24 Oct 2026).** `createProperty` reviewed that day accepts `name`, `location`, `size`, `place_label` and a centroid. It does not list `pic` or `state`. If the tool or the API rejects those attributes, create the property with the name, read it back, and tell them the PIC and state are not stored yet. Keep both in the conversation so they can be written when the field exists. Do not put the PIC in `location` or `place_label`. `location` may hold a town they want shown. Say that is not the PIC.
+#239 and #240 do not name a `state` column. Do not send `state`. Keep the state they told you: parcel search needs it. If `createProperty` rejects `pic` as an unknown attribute, the connector has not picked up the column. Create the property with the name, keep the PIC in the conversation, and say it is not on this connector yet.
 
 `visibility` stays unset or `private`.
 
@@ -87,11 +89,57 @@ One confirm per property: "Create '{name}' in {state}, PIC as you read it, on {o
 Pass if `completed_steps` contains `create_property`, or:
 
 - At least one property exists for the owner they chose, and
-- For every property created or claimed in this setup, you asked for the PIC and the state, and each is either stored or explicitly left as not recorded.
+- For every property created or claimed in this setup, you asked for the PIC and the state, and the PIC is either stored or explicitly left unset.
 
 Fail while the chosen owner has no property and they have not said they will add one later. "Later" pauses setup. It does not fail the account.
 
-## Step 3 — Paddocks, leased areas and blocks
+## Step 2b — Boundaries (`map_boundaries`)
+
+Do this after the property exists and before paddocks. For each property, one of these finishes the step: a parcel is attached, the property already has paddocks, or the property is in a state with no parcel search. The step is done when every property in this setup meets one of those.
+
+Ask the state before you search. Supported cadastres: NSW, VIC, QLD, TAS. SA, WA, NT and ACT return `422` `parcel_search_unsupported`. Do not call `searchParcels` for those four. Tell them parcel search does not cover that state, and offer a drawn outline with `updatePropertyBoundary`. That offer completes the step for an unsupported state even if they draw it later.
+
+### Search and attach
+
+For NSW, VIC, QLD or TAS, ask for a street address or a point on the property. `searchParcels` is `GET /api/v1/properties/{property_id}/parcel-search` with `address`, or with `latitude` and `longitude`. If they give both, send the point and not the address: the point wins.
+
+Show the parcels the tool actually returned, in their words (lot, address, area, whatever fields came back). Ask which ones are theirs. They can pick more than one.
+
+`attachParcelsToProperty` is the POST. Send `external_ids` only, the ids from that search, and `confirm: true`. Do not send a different id field. Then `listPropertyParcels` and read the names back.
+
+A wrong parcel comes off with `deletePropertyParcel` and `confirm: true`.
+
+If `searchParcels` is not on the connector, say so. Offer `updatePropertyBoundary`. Do not scrape a cadastre site, and do not use WA Brands Search.
+
+### When search fails
+
+Match the `code`. Do not retry the same call unchanged.
+
+| `code` | What to do |
+|---|---|
+| `parcel_search_state_required` | You do not have a state the search can use. Ask which state the property is in, then search again with that state in the address, or with a point. Do not invent a `state` attribute. |
+| `parcel_search_unsupported` | SA, WA, NT or ACT. Stop searching. Offer `updatePropertyBoundary`. |
+| `parcel_geocode_unavailable` | The address lookup is down. Ask for a latitude and longitude, or leave the boundary for later. Do not invent a point. |
+| `parcel_geocode_failed` | That address did not geocode. Ask them to say it again, or give a point. |
+| `parcel_search_query_required` | Neither an address nor a point was sent. Ask for one. |
+| `parcel_search_query_invalid` | Show the error. Ask them to restate the address or the point. Do not guess a correction. |
+| `parcel_search_unavailable` | The cadastre service is down. Offer a drawn boundary, or a later search. Do not block the rest of setup. |
+| `parcel_ids_required` | Attach was sent with no `external_ids`. Ask which parcel, then send those ids. |
+| `parcel_not_in_search` | `409`. That external id was not in the latest search for this property. Search again and attach only an id from the new result. |
+
+### Drawing the outline
+
+`updatePropertyBoundary` saves the ring. `boundary` is an array of rings. Each ring is `[longitude, latitude]` pairs, longitude first, at least four positions, first point repeated at the end. It is not a GeoJSON object. `confirm: true`.
+
+Send `area_source: "drawn"` when the ring should set the hectares. Send `area_source: "typed"` when they already gave a hectare figure they want kept. Do not invent a ring, a coordinate, or a hectare figure. If they cannot read coordinates in the chat, tell them the outline is drawn on the property map in PurpleGrain, and leave the boundary unset. `boundary_source` is `traced`, `grid`, `gps` or `imported`, and only when they told you how the ring was captured. Do not send `boundary_captured_by`.
+
+### Done when
+
+Pass if `completed_steps` contains `map_boundaries`, or every property in this setup has an attached parcel, or already has a paddock, or is in SA, WA, NT or ACT and you have told them search does not cover it.
+
+Fail while a property in NSW, VIC, QLD or TAS has no parcel and no paddock, and they have not deferred the boundary. "Later" pauses this step. It does not fail the account.
+
+## Step 3 — Paddocks, tenure and blocks
 
 `next_step` splits this into `map_paddocks` and `create_blocks`. Do the paddocks first.
 
@@ -99,7 +147,9 @@ Ask: "What do you call the paddocks or areas on {property}? Hectares is enough, 
 
 `createPaddock` with `name`, `area_ha` when they gave it, and `area_source: "typed"` when the hectares were spoken. `land_use` (`cropping`, `grazing`, `mixed`, `fallow`) only when they said it. Do not infer it.
 
-Owned or leased has no field on the schema reviewed on 24 Oct 2026. Do not send `tenure` or `leased`. Remember it in the summary you show them. There is nowhere on the paddock to store it until a field exists. Say that.
+#239 adds nullable `tenure` on the paddock. Send `owned` or `leased` as they said. Leave `tenure` unset when they do not know. Do not send any other tenure value. If the connector rejects `tenure`, create the paddock without it and say this connector has not picked up the column.
+
+#241 adds `paddocks.parcel_id`. When they say a paddock sits on one parcel already attached, set `parcel_id` to that parcel's id from `listPropertyParcels`. That id is the parcel on the property, not the `external_id` you sent to attach. Omit `parcel_id` when the paddock is not on a single attached parcel. If create rejects `parcel_id`, set it with `updatePaddock`.
 
 A name is enough to create a paddock. Area can be "not recorded".
 
@@ -109,9 +159,11 @@ Then ask: "Do you group any of those into blocks — an outblock across the road
 
 | Their words | `kind` |
 |---|---|
-| Across the road, a separate parcel, an outblock | `outblock` |
+| Across the road, a separate parcel of country, an outblock | `outblock` |
 | An irrigation farm | `irrigation_farm` |
 | A name for a group, and neither of the above | `management` |
+
+"Parcel" in that table is their word for a block of country. It is not a cadastre parcel and it does not call `attachParcelsToProperty`.
 
 If you use `management` because they only gave a name, tell them that is the label you used. A paddock left out stays in the home block. Grouping does not write, move or remove a record. A paddock is in one block; naming it on a new block moves it.
 
@@ -131,11 +183,11 @@ Ask: "What mobs are on {property}? For each one: the name you use, the species, 
 
 No livestock: "No stock is fine. We'll skip mobs and record a paddock job instead." That completes this step.
 
-`createMob` with `name` and `head_count` when they gave a count. Send `species` and `class` when the tool accepts them. That is the agreed contract. Names are unique per property, including archived mobs. A new mob is not in a paddock until `moveMob`.
+`createMob` with `name` and `head_count` when they gave a count. #239 adds nullable `stock` on the mob. Send `stock` as the species and class in their words (`Merino ewes`). Do not also send `species`, `class`, `breed`, `sex` or `birth_year`. Names are unique per property, including archived mobs. A new mob is not in a paddock until `moveMob`.
 
-**Not confirmed (24 Oct 2026).** `createMob` reviewed that day has `name`, `head_count` and `archived` only. Its description says there are no species, class or breed fields yet, and to put those in the name. If `species` or `class` is rejected, create the mob with the name and head count, put the species and class in the name ("Merino ewes"), and tell them there is no species field on the mob yet. Do not send `breed`, `sex` or `birth_year`. Those names are not in the agreed onboarding contract.
+If the connector rejects `stock`, create the mob with the name and head count, put the species and class in the name, and say this connector has not picked up the column.
 
-NLIS or eID status has no mob field in that schema, and a mob has no notes field there. Keep the answer for the summary. Offer an eID tagging record later through `au-mob-husbandry-records` if they want it stored. Do not pretend `createMob` wrote the NLIS database.
+NLIS or eID status is not a mob column. Keep the answer for the summary. Offer an eID tagging record later through `au-mob-husbandry-records` if they want it stored. Do not pretend `createMob` wrote the NLIS database.
 
 `moveMob` places the mob: the mob's id, `to_paddock`, `capture_source: "agent"`, and `completed_at` only when they are recording a past move. The destination has to be a live paddock on the same property. If they do not know the paddock, leave the mob unplaced and say so. Its own confirm: "Put {mob} in {paddock}?"
 
@@ -164,7 +216,7 @@ Fail if the only "record" is a placeholder, a cancelled write, or a summary they
 
 ## After the last step
 
-When all six of `create_team`, `create_property`, `map_paddocks`, `create_blocks`, `add_mobs` and `first_record` are done, say the farm is set up and name what is still not recorded (PIC, hectares, a batch). Do not call it compliant. If the server still says `in_progress`, tell them what `next_step` is and do that, or show them the disagreement.
+When all seven of `create_team`, `create_property`, `map_boundaries`, `map_paddocks`, `create_blocks`, `add_mobs` and `first_record` are done, say the farm is set up and name what is still not recorded (PIC, hectares, a batch). Do not call it compliant. If the server still says `in_progress`, tell them what `next_step` is and do that, or show them the disagreement.
 
 ## Writes, in one place
 
@@ -172,10 +224,15 @@ When all six of `create_team`, `create_property`, `map_paddocks`, `create_blocks
 |---|---|---|
 | Business | `createBusiness` | The name |
 | Invite | `createBusinessMember` | Email or mobile, and the permission. Say that a message is sent |
-| Property | `createProperty` | Name, state, PIC as read, owner |
-| Paddock | `createPaddock` | Name, hectares, owned or leased (lease is not stored yet) |
+| Property | `createProperty` | Name, the state they gave, `pic` as read, owner |
+| Find parcels | `searchParcels` | Address, or the point. No confirm; it is a read |
+| Parcels on the property | `listPropertyParcels` | A read |
+| Attach parcels | `attachParcelsToProperty` | The parcels, by the labels from the search. `external_ids` only |
+| Remove a parcel | `deletePropertyParcel` | Which parcel is coming off |
+| Draw the outline | `updatePropertyBoundary` | That you are saving a ring they supplied, or that you are not inventing one |
+| Paddock | `createPaddock` | Name, hectares, `tenure` (`owned` or `leased`), `parcel_id` when it sits on one attached parcel |
 | Block | `createBlock` | Name, kind, paddock names |
-| Mob | `createMob` | Name, species, class, head |
+| Mob | `createMob` | Name, `stock`, head |
 | Place a mob | `moveMob` | Mob and paddock |
 
-Read the created property, paddock or mob back before telling them a contract field was stored. If a write times out, list that owner's properties, paddocks or mobs before retrying. Do not send `Idempotency-Key` on these tools. The schema reviewed on 24 Oct 2026 does not have it.
+Read the created property, paddock or mob back before telling them `pic`, `tenure` or `stock` was stored. If a write times out, list that owner's properties, paddocks or mobs before retrying. Do not send `Idempotency-Key` on these tools, or on the parcel tools. The schemas reviewed for the account tools do not have it, and #241/#242 do not add it.

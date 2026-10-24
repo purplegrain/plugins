@@ -1,10 +1,12 @@
 {
   "version": 1,
   "updated": "2026-10-24",
+  "onboarding_skill": "pg-onboarding@1",
+  "onboarding_skill_url": "https://github.com/purplegrain/plugins/blob/main/purplegrain/skills/pg-onboarding/SKILL.md",
   "note": "Master list of skill texts in this repository. The connector may serve the same SKILL.md files. It does not add a rule that is not here.",
   "skills": [
-    {"name": "pg-core", "version": "1.0.0", "kind": "core", "path": "purplegrain/skills/pg-core/SKILL.md"},
-    {"name": "pg-onboarding", "version": "1.0.0", "kind": "onboarding", "skill_id": "pg-onboarding@1", "path": "purplegrain/skills/pg-onboarding/SKILL.md"},
+    {"name": "pg-core", "version": "1.1.0", "kind": "core", "path": "purplegrain/skills/pg-core/SKILL.md"},
+    {"name": "pg-onboarding", "version": "1.1.0", "kind": "onboarding", "skill_id": "pg-onboarding@1", "path": "purplegrain/skills/pg-onboarding/SKILL.md", "skill_url": "https://github.com/purplegrain/plugins/blob/main/purplegrain/skills/pg-onboarding/SKILL.md"},
     {"name": "li-adverse-reaction", "version": "1.0.0", "kind": "line-item", "path": "purplegrain/skills/li-adverse-reaction/SKILL.md"},
     {"name": "li-buffer-drift", "version": "1.0.0", "kind": "line-item", "path": "purplegrain/skills/li-buffer-drift/SKILL.md"},
     {"name": "li-dose-liveweight", "version": "1.0.0", "kind": "line-item", "path": "purplegrain/skills/li-dose-liveweight/SKILL.md"},
