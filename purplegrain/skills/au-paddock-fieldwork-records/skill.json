@@ -1,0 +1,21 @@
+{
+  "name": "au-paddock-fieldwork-records",
+  "version": "1.0.0",
+  "kind": "orchestrator",
+  "asset": "paddock",
+  "tool": "createFieldworkRecord",
+  "requires": ["pg-core>=1.0.0"],
+  "line_items": [
+    "li-grazing-harvest-whp",
+    "li-state-chem-record-rules",
+    "li-product-batch-expiry",
+    "li-operator-credential",
+    "li-record-retention"
+  ],
+  "line_items_not_shipped": [
+    "li-harvest-mrl-check",
+    "li-cvd-generator",
+    "li-burning-permit",
+    "li-irrigation-water-meter"
+  ]
+}

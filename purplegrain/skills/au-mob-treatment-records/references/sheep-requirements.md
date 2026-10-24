@@ -1,6 +1,8 @@
 # Sheep treatment and husbandry requirements
 
-Research note for the `au-mob-treatment-records` skill. Checked 19 October 2026. Figures change: use the linked page, not a remembered ESI or a remembered form version. This note is not veterinary or legal advice.
+Research note for the mob treatment and husbandry skills. Checked 19 October 2026. Figures change: use the linked page, not a remembered ESI or a remembered form version. This note is not veterinary or legal advice.
+
+**Correction, 24 October 2026.** The eID paragraph in section 5 that left some states "undecided" is out of date for NSW, Queensland, South Australia and Tasmania. Those four publish 1 January 2027 for all ages. The correction is in section 5. Western Australia on 1 July 2026 is not verified. Apply `li-eid-tagging` rather than the old paragraph. Husbandry procedures now live in `au-mob-husbandry-records`. This file is still the long source note.
 
 PurpleGrain field names below are the MCP tool schemas for `createTreatmentRecord`, `createHusbandryRecord`, `updateTask` and `moveMob`. Where a requirement has no field, the skill stores it in `record_notes` or asks. Do not invent a key.
 
@@ -145,7 +147,9 @@ From 1 January 2025, sheep and farmed goats born on or after that date must wear
 
 Victoria has been ahead of that national date: from 1 January 2022 every sheep and non-exempt goat, of any age, needs an electronic NLIS tag before it leaves a Victorian property. One electronic tag only. Tags bought for one PIC are not used on another. A damaged tag is the usual reason to remove one. Sheep entering Victoria may arrive on a visual tag; before they leave a Victorian property they need a pink electronic post-breeder tag unless they already have an electronic tag. A mob-based NLIS transfer is the path for visually tagged introductions.
 
-The DAFF plan also lists 1 January 2027 for "all sheep and goats fitted with an eID before leaving a property, regardless of age". The April 2023 state table does not make that date uniform: Victoria was already all-ages; NSW and Queensland were listed as 1 January 2027 for all ages and 1 January 2025 for newborns; other jurisdictions were still undecided in that PDF. Check the current state rule before telling a farmer that an older visual tag is still legal off the property.
+The DAFF plan also lists 1 January 2027 for "all sheep and goats fitted with an eID before leaving a property, regardless of age". The April 2023 state table did not make that date uniform, and it left some jurisdictions undecided.
+
+Update 24 October 2026, from the livestock research of 23 October 2026. NSW, Queensland, South Australia and Tasmania publish 1 January 2027 as the all-ages date. That research marked the four state pages as verified and did not copy the page URLs. Do not invent those URLs. Victoria remains all-ages from 1 January 2022, as this section already says. Western Australia reaching all ages on 1 July 2026 was a search summary only. Do not state that date until it is read on a DPIRD page. Animals born on or after 1 January 2025 still need an eID before they leave the property of birth. The line item `li-eid-tagging` is the rule the agent applies.
 
 PurpleGrain: `procedures: ["eid_tag"]` records that the mob was tagged. It does not order tags or write the NLIS database. Tag colour, breeder versus post-breeder, and the PIC on the tag go in `record_notes`.
 

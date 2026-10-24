@@ -1,0 +1,29 @@
+{
+  "name": "li-product-batch-expiry",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["treatment", "husbandry", "spray", "sowing", "fertiliser"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": ["products[].batch", "products[].expiry"],
+  "notes_fields": [],
+  "severity": "lpa",
+  "sources": [
+    {
+      "title": "LPA livestock treatment record template",
+      "url": "https://www.integritysystems.com.au/globalassets/isc/pdf-files/lpa-documents/lpa-records-templates/lpa-02-livestock-treatment-record-form.pdf",
+      "publisher": "Integrity Systems Company",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "ISC record keeping",
+      "url": "https://www.integritysystems.com.au/on-farm-assurance/record-keeping/",
+      "publisher": "Integrity Systems Company",
+      "last_verified": "2026-10-23",
+      "status": "V"
+    }
+  ]
+}

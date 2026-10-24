@@ -1,0 +1,22 @@
+{
+  "name": "li-welfare-sheep-dock-castrate",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["husbandry"],
+    "state": ["any"],
+    "species": ["sheep"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": [],
+  "notes_fields": ["record_notes:lamb_age", "record_notes:tail_joint", "record_notes:haemorrhage_control"],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "Australian Animal Welfare Standards and Guidelines for Sheep",
+      "url": "https://animalwelfarestandards.net.au/wp-content/uploads/2023/08/Sheep-Standards-and-Guidelines-for-Endorsed-Jan-2016-061017.pdf",
+      "publisher": "Animal Health Australia",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    }
+  ]
+}

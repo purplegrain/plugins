@@ -1,0 +1,23 @@
+{
+  "name": "au-mob-husbandry-records",
+  "version": "1.0.0",
+  "kind": "orchestrator",
+  "asset": "mob",
+  "tool": "createHusbandryRecord",
+  "requires": ["pg-core>=1.0.0"],
+  "line_items": [
+    "li-welfare-sheep-mulesing",
+    "li-welfare-sheep-dock-castrate",
+    "li-eid-tagging",
+    "li-product-batch-expiry",
+    "li-dose-liveweight",
+    "li-withholding-meat-esi",
+    "li-operator-credential",
+    "li-record-retention"
+  ],
+  "line_items_not_shipped": [
+    "li-welfare-cattle",
+    "li-husbandry-outcomes",
+    "li-nwd-status"
+  ]
+}

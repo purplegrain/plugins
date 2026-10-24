@@ -1,0 +1,19 @@
+{
+  "name": "au-compliance-export",
+  "version": "1.0.0",
+  "kind": "output",
+  "asset": "property",
+  "tool": "getTreatmentRegister",
+  "requires": ["pg-core>=1.0.0"],
+  "line_items": [
+    "li-product-batch-expiry",
+    "li-withholding-meat-esi",
+    "li-grazing-harvest-whp",
+    "li-dose-liveweight",
+    "li-operator-credential",
+    "li-spray-weather",
+    "li-buffer-drift",
+    "li-record-retention"
+  ],
+  "line_items_not_shipped": []
+}

@@ -1,6 +1,6 @@
 # Australian paddock spray record requirements
 
-Research note for the `au-spray-records` skill. Checked 19 October 2026. Labels, permits and state rules change. Use the pack in the farmer's hand and the linked page, not a remembered rate or buffer. This note is not agronomy or legal advice.
+Research note for the `au-spray-records` skill. Checked 19 October 2026. Northern Territory and ACT rows were added 24 October 2026 from the paddock research of 23 October 2026. Labels, permits and state rules change. Use the pack in the farmer's hand and the linked page, not a remembered rate or buffer. This note is not agronomy or legal advice.
 
 PurpleGrain field names are the MCP schemas for `createSprayRecord` and `updateSprayRecord`. Where a requirement has no field, the skill stores it in `record_notes`, or the applicator's name in `updateTask.operator`. Do not invent a key.
 
@@ -55,7 +55,7 @@ The sheep and lamb NVD asks whether, in the past 60 days, stock ate material tha
 
 ## 3. State record rules
 
-Other territories were not researched. Exemptions for household hand application exist in several states. A farm boom, spot spray of a paddock, or aerial job is not that exemption.
+Northern Territory and the ACT are in the table below, added 24 October 2026 from the paddock research of 23 October 2026. Exemptions for household hand application exist in several states. A farm boom, spot spray of a paddock, or aerial job is not that exemption.
 
 | State | Make the record | Keep it | Who can require it |
 |---|---|---|---|
@@ -65,6 +65,8 @@ Other territories were not researched. Exemptions for household hand application
 | Western Australia | 7 days | 2 years from use | DPIRD inspector |
 | South Australia | Group 4 herbicides in prescribed businesses and prescribed areas: accurate records, copy to the owner if the user is someone else. General farm sprays: PIRSA says record within 24 hours as best practice, and that a universal duty may still be coming | Group 4: minimum 2 years. General: PIRSA says two years as best practice | PIRSA for the Group 4 rules |
 | Tasmania | Code of practice: commercial and agricultural operators must keep a record. No retention period was found in that code | Not stated in the code read here | NRE Tasmania / Registrar of Chemical Products for licences and the code |
+| Northern Territory | As soon as practicable. Added 24 Oct 2026 | 2 years after use | NT chemicals adviser or inspector |
+| ACT | 48 hours. Added 24 Oct 2026 | 2 years | EPA / Access Canberra |
 
 A label or permit period is additional. If it is longer or sooner, follow it as well as the state rule.
 
@@ -150,6 +152,20 @@ A commercial spray service needs a Commercial Operator Licence from the Registra
 
 Uncertainty: this code was the official Tasmanian page found. No retention period is stated in the sections read. Do not invent one. A label record period still applies.
 
+### Northern Territory
+
+Added 24 October 2026 from the paddock research (checked 23 October 2026 against the NT page and the regulations PDF named there). A record is required for powered spray equipment, stored grain or stock-food treatment, saleable horticulture, vertebrate pest control and business use. Fields include the user's name and address; business, licensee and client for contract spraying; full product name and APVMA registration number; rate or amount; method; aerial pilot, aircraft type and registration; product expiry; date and time with start and finish; land location and area; crop or pasture; weather (temperature, wind speed and direction, and changes during use); target pest; withholding period; permit or authorisation. Keep it 2 years. Contract sprayers give the record to the licensee as soon as practicable. Prescribed products need approved training or a ground-spray or pilot chemical-rating licence.
+
+- <https://nt.gov.au/industry/agriculture/farm-management/using-chemicals-responsibly/keeping-records-of-chemical-use>
+- <https://legislation.nt.gov.au/api/sitecore/SubordinateLegislation/PDF?id=4335>
+
+### Australian Capital Territory
+
+Added 24 October 2026 from the same paddock research. Environment Protection Regulation 2005 s 55B: record within 48 hours, keep 2 years. Fields: trade name; date and time; rate; crop or commodity; parcel address and location within it; user name and contact; recipient if it was a service. Retail household product applied by hand, and pool or spa sanitiser, are outside the duty.
+
+- <https://www.legislation.act.gov.au/sl/2005-38/>
+- <https://www.accesscanberra.act.gov.au/business-and-work/pest-and-weed-control-operators>
+
 ## 4. Spray drift, buffers, 2,4-D and paraquat
 
 APVMA spray-drift labelling instructions: <https://www.apvma.gov.au/registrations-and-permits/apvma-labelling-codes/alc/spray-drift-labelling-alc>
@@ -198,6 +214,8 @@ Who inspects:
 - Western Australia: DPIRD inspectors
 - South Australia: PIRSA, for the Group 4 herbicide duties
 - Tasmania: Registrar of Chemical Products and NRE Tasmania, for licensing and the code
+- Northern Territory: a chemicals adviser or inspector
+- Australian Capital Territory: EPA / Access Canberra
 - LPA: an auditor approved by LPA Administration, site or document review
 - Freshcare or a packer's GAP scheme: that scheme's auditor
 

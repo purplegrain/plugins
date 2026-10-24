@@ -1,15 +1,17 @@
 # PurpleGrain plugins — Agent Guide
 
 The PurpleGrain plugin marketplace: the `purplegrain` Claude Code plugin (its MCP
-connector and the `au-mob-treatment-records` and `au-spray-records` skills) and
-the skill zips published on GitHub Releases. See [README.md](README.md).
+connector, `pg-core`, `pg-onboarding`, the record skills and the line-item
+skills) and the skill zips published on GitHub Releases. The list is
+[purplegrain/CATALOGUE.md](purplegrain/CATALOGUE.md). See [README.md](README.md).
 
 ## Check a change
 
 ```bash
-bash scripts/verify.sh                 # all three below, one verdict
+bash scripts/verify.sh                 # all four below, one verdict
 claude plugin validate .               # the marketplace
 claude plugin validate ./purplegrain   # the plugin
+python3 scripts/check-skills.py        # names, field ownership, catalogue
 bash scripts/build-skill-zips.sh       # dist/<skill>.zip, one per skill
 ```
 

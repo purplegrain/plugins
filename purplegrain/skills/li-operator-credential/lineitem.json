@@ -1,0 +1,36 @@
+{
+  "name": "li-operator-credential",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["treatment", "husbandry", "spray", "sowing", "fertiliser", "fieldwork", "movement", "feeding", "task"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": ["task.operator"],
+  "notes_fields": ["record_notes:operator_phone", "record_notes:operator_address", "record_notes:credential"],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "Agriculture Victoria — Agricultural Chemical User Permit",
+      "url": "https://agriculture.vic.gov.au/farm-management/chemicals/licences-and-permits/agricultural-chemical-user-permit",
+      "publisher": "Agriculture Victoria",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "NSW EPA pesticide training",
+      "url": "https://www.epa.nsw.gov.au/Your-environment/Pesticides/compulsory-training-pesticides/pesticide-trainers-courses",
+      "publisher": "NSW EPA",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "NT keeping records of chemical use",
+      "url": "https://nt.gov.au/industry/agriculture/farm-management/using-chemicals-responsibly/keeping-records-of-chemical-use",
+      "publisher": "Northern Territory Government",
+      "last_verified": "2026-10-23",
+      "status": "V"
+    }
+  ]
+}

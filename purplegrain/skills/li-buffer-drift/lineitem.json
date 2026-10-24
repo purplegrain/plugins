@@ -1,0 +1,29 @@
+{
+  "name": "li-buffer-drift",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["spray"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": ["spray.no_spray_zone_m", "spray.droplet_category", "spray.neighbour_drift"],
+  "notes_fields": ["record_notes:neighbour_notification"],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "APVMA spray drift labelling code",
+      "url": "https://www.apvma.gov.au/registrations-and-permits/apvma-labelling-codes/alc/spray-drift-labelling-alc",
+      "publisher": "APVMA",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "Tasmania Code of Practice for Ground Spraying",
+      "url": "https://nre.tas.gov.au/agriculture/agvet-chemicals/codes-of-practice/code-of-practice-for-ground-spraying",
+      "publisher": "NRE Tasmania",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    }
+  ]
+}

@@ -29,6 +29,8 @@ jobs:
         run: claude plugin validate .
       - name: Validate the PurpleGrain plugin
         run: claude plugin validate ./purplegrain
+      - name: Check the skill catalogue
+        run: python3 scripts/check-skills.py
       - name: Build skill zips
         run: bash scripts/build-skill-zips.sh
       - uses: actions/upload-artifact@v4

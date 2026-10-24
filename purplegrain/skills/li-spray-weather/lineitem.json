@@ -1,0 +1,29 @@
+{
+  "name": "li-spray-weather",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["spray"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": ["spray.weather_readings[]"],
+  "notes_fields": [],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "APVMA spray drift labelling code",
+      "url": "https://www.apvma.gov.au/registrations-and-permits/apvma-labelling-codes/alc/spray-drift-labelling-alc",
+      "publisher": "APVMA",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "NSW EPA compulsory pesticide record keeping",
+      "url": "https://www.epa.nsw.gov.au/Your-environment/Pesticides/compulsory-record-keeping",
+      "publisher": "NSW EPA",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    }
+  ]
+}

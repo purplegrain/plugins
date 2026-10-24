@@ -1,0 +1,8 @@
+{
+  "name": "pg-onboarding",
+  "version": "1.0.0",
+  "skill_id": "pg-onboarding@1",
+  "kind": "onboarding",
+  "last_verified": "2026-10-24",
+  "requires": ["pg-core>=1.0.0"]
+}
