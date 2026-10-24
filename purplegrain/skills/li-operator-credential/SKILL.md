@@ -5,7 +5,7 @@ description: "Line item for PurpleGrain record skills. Do not use directly. Who 
 
 # Operator and credential
 
-Version 1.0.0. Do not call a PurpleGrain write. `createTreatmentRecord`, `createHusbandryRecord` and `createFertiliserRecord` set `operator` from the signed-in user (connector descriptions, 24 Oct 2026). Spray, sowing and fieldwork creates do not take `operator` in the body. Read the saved task. If `operator` is missing, or someone else did the job, set it with `updateTask`. A plain `createTask` can take `operator` on the create. Phone, address and the credential have no fields. `record_notes`.
+Version 1.0.0. Do not call a PurpleGrain write. All six typed record creates accept `operator`, `record_notes` and `tags` in `body.data.attributes`; an omitted or blank operator defaults to the signed-in user's display name. Give the orchestrator the confirmed operator and notes to save atomically with the record, then read the saved task. Use `updateTask` only for a confirmed correction to an existing task, not a routine second write. A plain `createTask` also takes `operator` on the create. Phone, address and the credential have no dedicated fields: `record_notes`.
 
 Ask the credential when the state or the product requires one. Otherwise the name is the LPA field and follows the legal gaps. Do not ask for a licence number on an ordinary drench just to fill a gap.
 

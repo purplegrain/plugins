@@ -89,9 +89,9 @@ Resolve the account as in `pg-core`. `getPropertyPicture` or `listMobs` with `pr
 
 `createTreatmentRecord`: `mob_id`, `confirm: true` only after the yes, `body.data.type: "treatment-record"`. Fields in `body.data.attributes`. `category` is required.
 
-The server sets `operation_type`, `capture_source: agent`, `operator` and `producer`. Do not send `broadcast`, `share_scope` or `operation_type: ai`.
+The server sets `operation_type`, `capture_source: agent` and `producer`. It defaults an omitted or blank `operator` to the signed-in user's display name. Do not send `broadcast`, `share_scope` or `operation_type: ai`.
 
-Notes, tags and a corrected operator follow `pg-core` (on the create if the tool accepts them, otherwise `updateTask` with `confirm: true`). The treatment create schema reviewed on 24 Oct 2026 does not take `record_notes`, `operator` or `tags`. This tool accepts `Idempotency-Key`. If the write fails or times out, read the mob's completed records before retrying, and reuse that key when the first attempt sent one.
+Send confirmed `record_notes`, `operator` and `tags` in `body.data.attributes` on this create, following `pg-core`; they are saved with the treatment, not in a routine second write. This tool accepts `Idempotency-Key`. If the write fails or times out, read the mob's completed records before retrying, and reuse that key when the first attempt sent one.
 
 Without PurpleGrain, produce the same summary as a row they can copy onto the LPA livestock treatment record.
 

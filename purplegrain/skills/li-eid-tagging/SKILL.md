@@ -31,7 +31,7 @@ The April 2023 DAFF implementation table left some jurisdictions undecided. That
 |---|---|
 | Breeder tag or pink post-breeder tag | `record_notes` |
 | Year colour, and the PIC printed on the tag | `record_notes` |
-| Birth year or cohort, so the 1 January 2025 line can be applied | `record_notes`. Do not send `birth_year`. The mob column from API #239 is `stock` (species and class in their words), not a birth year |
+| Birth year or cohort, so the 1 January 2025 line can be applied | Read the mob's optional `birth_year` if recorded; otherwise ask. Keep the event's stated cohort in `record_notes`. `birth_year` belongs to the mob, not the typed record; a mob correction needs its own confirm. Never infer it from class or name |
 
 Tags bought for one PIC are not used on another (Victoria, sheep reference, 19 Oct 2026, E). Do not claim that sentence for every state.
 
