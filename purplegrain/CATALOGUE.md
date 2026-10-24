@@ -4,14 +4,14 @@ Version of this list: 24 October 2026. Machine-readable copy: [skills/index.json
 
 These are records and reminders, not veterinary, legal or agronomic advice. A point marked unverified in a skill is a warning, not a block. Sources and last-checked dates are in the skill.
 
-`pg-onboarding` is version `pg-onboarding@1`.
+`pg-onboarding@1` is the onboarding skill the API names in `meta.onboarding.skill`. The file is [skills/pg-onboarding/SKILL.md](skills/pg-onboarding/SKILL.md). `skill_url` is `https://github.com/purplegrain/plugins/blob/main/purplegrain/skills/pg-onboarding/SKILL.md`.
 
 ## Core
 
 | Skill | Version | What it does |
 |---|---|---|
-| `pg-core` | 1.0.0 | First PurpleGrain call. Offers setup when the account is empty or partial. Confirm, citations, disclaimer. |
-| `pg-onboarding` | 1.0.0 (`pg-onboarding@1`) | Five setup steps. Resumes from `completed_steps` and `next_step`. A suggestion, never a block on a read. |
+| `pg-core` | 1.1.0 | First PurpleGrain call. Offers setup when the account is empty or partial. Confirm, citations, disclaimer. |
+| `pg-onboarding` | 1.1.0 (`pg-onboarding@1`) | Team, property and PIC, `map_boundaries`, paddocks and tenure, blocks, mobs, one real record. Resumes from `completed_steps` and `next_step`. |
 
 ## Line items shipped (the P0 set)
 

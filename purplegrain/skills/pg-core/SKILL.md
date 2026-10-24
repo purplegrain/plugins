@@ -5,7 +5,7 @@ description: "Use on the first PurpleGrain call in a conversation and before any
 
 # PurpleGrain core
 
-Version 1.0.0. Every PurpleGrain record skill follows this. It does not collect the fields of a drench, a spray or any other job, and it does not write those records.
+Version 1.1.0. Every PurpleGrain record skill follows this. It does not collect the fields of a drench, a spray or any other job, and it does not write those records.
 
 ## Disclaimer
 
@@ -33,7 +33,7 @@ If they say yes, follow `pg-onboarding` (version `pg-onboarding@1`). Do not inve
 
 Order when this text is not what the agent has open: the installed skill, then the connector prompt `setup-my-farm` or the resource `purplegrain://skills/pg-onboarding` (the same text), then the `agent_hint` on the metadata. The hint is a short fallback, not a substitute for the skill when the skill is loaded.
 
-**Not confirmed (24 Oct 2026).** The connector schemas reviewed that day did not return `meta.onboarding`. The agreed contract still puts it on responses. If the block is missing, say you are inferring and follow the inference rules in `pg-onboarding`. Do not invent a tool name to fetch onboarding.
+API #240 puts this block on responses. If a response has no block, the connector has not picked up that PR. Say you are inferring and follow the inference rules in `pg-onboarding`. Do not invent a tool name to fetch onboarding.
 
 ## Onboarding metadata
 
@@ -47,20 +47,22 @@ Read whichever of these the response actually has. Agents do not reliably see MC
 {
   "status": "not_started | in_progress | complete",
   "completed_steps": ["create_team"],
-  "next_step": "create_team | create_property | map_paddocks | create_blocks | add_mobs | first_record",
+  "next_step": "create_team | create_property | map_boundaries | map_paddocks | create_blocks | add_mobs | first_record",
   "skill": "pg-onboarding@1",
-  "skill_url": "https://github.com/purplegrain/plugins/tree/main/purplegrain/skills/pg-onboarding",
+  "skill_url": "https://github.com/purplegrain/plugins/blob/main/purplegrain/skills/pg-onboarding/SKILL.md",
   "agent_hint": "plain-language instruction including short fallback steps"
 }
 ```
 
-`skill` should be `pg-onboarding@1`. If the server names another version, say so and continue with the text you have. Do not invent `links.onboarding`. A write that fails because there is no property or mob should carry this same block. When it does, offer `next_step`. When it does not, show the error that was actually returned.
+`skill` should be `pg-onboarding@1`. That id is this repository's `purplegrain/skills/pg-onboarding/SKILL.md`, also listed in `purplegrain/CATALOGUE.md` and `purplegrain/skills/index.json`. `skill_url` is that file. If the server sends another URL, use it only when it is this same file. If the server names another skill version, say so and continue with the text you have. Do not invent `links.onboarding`.
+
+`map_boundaries` sits between `create_property` and `map_paddocks`. A write that fails because there is no property or mob should carry this same block. When it does, offer `next_step`. When it does not, show the error that was actually returned.
 
 ## Which skill does the job
 
 | What they describe | Skill |
 |---|---|
-| Set up the farm, add a property, PIC, paddocks, mobs | `pg-onboarding` |
+| Set up the farm, add a property, PIC, parcels or a boundary, paddocks, mobs | `pg-onboarding` |
 | A product given to a mob: drench, fluke, lice, fly, vaccine, antibiotic, pain relief on its own, pour-on, injection, jet or dip | `au-mob-treatment-records` |
 | Marking, mulesing, docking, castration, dehorning, spaying, tagging, crutching, shearing, scanning, weaning, weighing | `au-mob-husbandry-records` |
 | Crutch or shear with a chemical on the same day, or marking day with a vaccine and pain relief | `au-mob-husbandry-records` (one record, not also a treatment) |
@@ -93,7 +95,7 @@ A photo of a label or a paper sheet: read what is there, mark anything you canno
 
 **Voice.** Repeat a batch, a rate or a dose back before the confirm.
 
-**Notes.** `record_notes`, `operator` and `tags` are the place for a fact with no field. The agreed contract is that create tools accept them on the one write. The connector schemas reviewed on 24 Oct 2026 still put `record_notes` and `operator` on `createTask` and `updateTask`, not on the sowing, fertiliser or fieldwork create schemas, and the treatment skill of that date used a follow-up `updateTask`. Send them on the create when that tool accepts them. If the create is rejected for an unknown attribute, retry without those fields and then `updateTask` with `confirm: true`. After a create that was meant to store notes, read the task back and use `updateTask` if the notes are missing. Notes do not set withholding dates. Tags do not either.
+**Notes.** `record_notes`, `operator` and `tags` are the place for a fact with no field. API #239 and #240 do not add those attributes to the typed create calls. `createTask` and `updateTask` take them. Send them on a typed create only when that tool's schema lists them. If the create is rejected for an unknown attribute, retry without those fields and then `updateTask` with `confirm: true`. After a create that was meant to store notes, read the task back and use `updateTask` if the notes are missing. Notes do not set withholding dates. Tags do not either.
 
 **Do not send** `broadcast`, `share_scope`, `operation_type: ai` or `rerun_ai`. Do not fall back to `createTask` to get around a refusal of a typed record. `create*Record` sets `capture_source: agent`, `producer` and `operation_type`. A plain `createTask` (feed, fence, observation, a sale note) must set `producer` to the business when the property is owned by a business. Omitting it returns 403 Forbidden, detail "Unauthorized". That is a missing producer, not a bad token.
 
@@ -103,4 +105,4 @@ A photo of a label or a paper sheet: read what is there, mark anything you canno
 
 **Duplicates.** After the asset is resolved, `listTasks` with `asset_id` and `filter_status: ["completed"]`. The next page is that tool's `page` parameter. Do not invent another paging name. Same day and same product, or the same husbandry procedures, is probably a duplicate: ask.
 
-**Account.** Never guess an id. Creating a missing property, paddock or mob is `pg-onboarding` (or that step alone) and needs its own confirm.
+**Account.** Never guess an id. Creating a missing property, paddock or mob, or attaching a parcel, is `pg-onboarding` and needs its own confirm. Property `pic`, paddock `tenure` (`owned` or `leased`) and mob `stock` are the nullable columns from API #239. A paddock's `parcel_id` is the parcel already attached to the property (API #241), not a cadastre external id. Do not look a PIC up on WA Brands Search.

@@ -7,7 +7,7 @@ description: "Line item for PurpleGrain record skills. Do not use directly. Whic
 
 Version 1.0.0. Do not call a PurpleGrain write. This item picks the row. It does not re-ask for batch, rate, weather, buffers or the operator. Those have their own line items. It asks only for the leftover facts in the last table, and it tells `li-record-retention` which state period to compare.
 
-Ask the state once per property until `state` is stored. `pg-onboarding` collects it. If it is not stored, ask. Do not infer a state from a town name.
+Ask the state once per property. `pg-onboarding` collects it for parcel search. API #239 and #240 do not add a `state` column, so do not send `state` on the property. If you were not told the state in this conversation, ask. Do not infer a state from a town name.
 
 ## Applies when
 

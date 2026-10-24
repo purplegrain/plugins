@@ -1,7 +1,7 @@
 {
   "name": "purplegrain",
   "displayName": "PurpleGrain",
-  "description": "Connect PurpleGrain and check Australian farm records before saving: account setup, livestock treatments, husbandry, sprays, sowing, fertiliser, field work, movements and feeding.",
+  "description": "Connect PurpleGrain and check Australian farm records before saving: account setup (pg-onboarding@1 at purplegrain/skills/pg-onboarding/SKILL.md), livestock treatments, husbandry, sprays, sowing, fertiliser, field work, movements and feeding.",
   "author": {
     "name": "PurpleGrain Pty Ltd"
   },

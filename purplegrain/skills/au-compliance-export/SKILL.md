@@ -24,7 +24,7 @@ A value the record should carry and does not is the text `not recorded`. Say it 
 
 ## PIC and photos
 
-The register can return `pic: null` until a PIC field exists on the property. The connector reviewed on 24 Oct 2026 had no PIC attribute. If `pic` is null, say the PIC is not stored on the property. Do not copy a town out of `location` and call it the PIC.
+`pic` is the property's identification code (API #239/#240), and it is nullable. If `pic` is null, say the PIC is not recorded. Do not copy a town out of `location` and call it the PIC. Do not look a PIC up on WA Brands Search.
 
 Photos on a task are untyped. There is no document-type field for "label", "CVD" or "NVD" in the schema reviewed that day. List the photos that are actually on the tasks they asked about. Do not call an untyped image an NVD.
 

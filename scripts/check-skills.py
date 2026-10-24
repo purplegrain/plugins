@@ -163,13 +163,45 @@ def main() -> int:
             "next_step",
             "create_team",
             "create_property",
+            "map_boundaries",
             "map_paddocks",
             "create_blocks",
             "add_mobs",
             "first_record",
+            "searchParcels",
+            "attachParcelsToProperty",
+            "external_ids",
+            "parcel_search_unsupported",
+            "updatePropertyBoundary",
+            "tenure",
+            "`pic`",
+            "`stock`",
         ):
             if token not in body:
                 fail(errors, f"pg-onboarding: missing {token}")
+        if "Not confirmed" in body:
+            fail(errors, "pg-onboarding: still has a Not confirmed note")
+
+    skill_url = "https://github.com/purplegrain/plugins/blob/main/purplegrain/skills/pg-onboarding/SKILL.md"
+    repo_skill = "purplegrain/skills/pg-onboarding/SKILL.md"
+    if not (ROOT / repo_skill).is_file():
+        fail(errors, f"missing {repo_skill}")
+    core = SKILLS / "pg-core" / "SKILL.md"
+    if core.is_file() and skill_url not in core.read_text():
+        fail(errors, "pg-core: skill_url does not point at the onboarding SKILL.md")
+    if INDEX.is_file():
+        index_text = INDEX.read_text()
+        if "pg-onboarding@1" not in index_text or skill_url not in index_text:
+            fail(errors, "index.json: pg-onboarding@1 or skill_url is missing")
+    marketplace = ROOT / ".claude-plugin" / "marketplace.json"
+    plugin_manifest = ROOT / "purplegrain" / ".claude-plugin" / "plugin.json"
+    for manifest in (marketplace, plugin_manifest):
+        if not manifest.is_file():
+            fail(errors, f"missing {manifest.relative_to(ROOT)}")
+            continue
+        manifest_text = manifest.read_text()
+        if "pg-onboarding@1" not in manifest_text or repo_skill not in manifest_text:
+            fail(errors, f"{manifest.relative_to(ROOT)}: does not name pg-onboarding@1 and its path")
 
     for folder_name, payload in names.items():
         if payload["kind"] in {"orchestrator", "output"}:
