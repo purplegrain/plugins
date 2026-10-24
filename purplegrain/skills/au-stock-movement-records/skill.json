@@ -1,0 +1,18 @@
+{
+  "name": "au-stock-movement-records",
+  "version": "1.0.0",
+  "kind": "orchestrator",
+  "asset": "mob",
+  "tool": "moveMob",
+  "requires": ["pg-core>=1.0.0"],
+  "line_items": [
+    "li-eid-tagging",
+    "li-record-retention",
+    "li-operator-credential"
+  ],
+  "line_items_not_shipped": [
+    "li-nlis-movement",
+    "li-health-declaration",
+    "li-nwd-status"
+  ]
+}

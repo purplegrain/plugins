@@ -1,0 +1,38 @@
+{
+  "name": "li-withholding-meat-esi",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["treatment", "husbandry"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": [
+    "treatment.products[].whp_days",
+    "treatment.products[].esi_days",
+    "treatment.products[].wool_interval_days",
+    "treatment.products[].milk_whp_days",
+    "husbandry.products[].whp_days",
+    "husbandry.products[].esi_days",
+    "husbandry.products[].wool_interval_days",
+    "husbandry.products[].milk_whp_days"
+  ],
+  "notes_fields": ["record_notes:rehandling_interval", "record_notes:russia_otc_ctc_90d"],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "APVMA ESI — sheep",
+      "url": "https://www.apvma.gov.au/chemicals-and-products/pesticides-and-veterinary-residues/esi-sheep",
+      "publisher": "APVMA",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "LPA livestock treatment record template",
+      "url": "https://www.integritysystems.com.au/globalassets/isc/pdf-files/lpa-documents/lpa-records-templates/lpa-02-livestock-treatment-record-form.pdf",
+      "publisher": "Integrity Systems Company",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "li-spray-rate-tank-mix",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["spray"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": [
+    "spray.products[].rate",
+    "spray.products[].rate_value",
+    "spray.products[].rate_unit",
+    "spray.products[].rate_basis",
+    "spray.products[].role"
+  ],
+  "notes_fields": [],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "LPA-03 crop, pasture and paddock treatment record",
+      "url": "https://www.integritysystems.com.au/globalassets/isc/pdf-files/lpa-documents/lpa-records-templates/lpa-03-crop-pasture-and-paddock-treatment-record-form.pdf",
+      "publisher": "Integrity Systems Company",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    }
+  ]
+}

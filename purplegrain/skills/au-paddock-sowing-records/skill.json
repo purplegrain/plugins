@@ -1,0 +1,22 @@
+{
+  "name": "au-paddock-sowing-records",
+  "version": "1.0.0",
+  "kind": "orchestrator",
+  "asset": "paddock",
+  "tool": "createSowingRecord",
+  "requires": ["pg-core>=1.0.0"],
+  "line_items": [
+    "li-seed-treatment",
+    "li-product-batch-expiry",
+    "li-grazing-harvest-whp",
+    "li-state-chem-record-rules",
+    "li-operator-credential",
+    "li-record-retention"
+  ],
+  "line_items_not_shipped": [
+    "li-treated-grain-segregation",
+    "li-plant-back-check",
+    "li-gm-crop-stewardship",
+    "li-export-intervals"
+  ]
+}

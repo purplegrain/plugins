@@ -1,0 +1,36 @@
+{
+  "name": "li-off-label-vet",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["treatment"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": ["treatment.vet_authorisation"],
+  "notes_fields": [],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "Agriculture Victoria — veterinary chemicals",
+      "url": "https://agriculture.vic.gov.au/farm-management/chemicals/veterinary-chemicals",
+      "publisher": "Agriculture Victoria",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "NSW DPI — stock medicines",
+      "url": "https://www.dpi.nsw.gov.au/agriculture/chemicals/animal-chemicals/stock-medicine",
+      "publisher": "NSW DPI",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "Business Queensland — treating animals",
+      "url": "https://www.business.qld.gov.au/industries/farms-fishing-forestry/agriculture/sustainable/chemical/use/animals",
+      "publisher": "Queensland Government",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    }
+  ]
+}

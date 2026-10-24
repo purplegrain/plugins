@@ -1,0 +1,29 @@
+{
+  "name": "li-eid-tagging",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["husbandry", "movement"],
+    "state": ["any"],
+    "species": ["sheep", "goats"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": [],
+  "notes_fields": ["record_notes:eid_tag_type", "record_notes:eid_pic_on_tag", "record_notes:birth_cohort"],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "ISC — what sheep and goat eID is",
+      "url": "https://www.integritysystems.com.au/identification--traceability/national-livestock-identification-system/Sheep-and-Goat-eID/What-is-Sheep-and-Goat-eID/",
+      "publisher": "Integrity Systems Company",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "DAFF sheep and goat traceability implementation plan",
+      "url": "https://www.agriculture.gov.au/biosecurity-trade/policy/partnerships/nbc/sheep-and-goat-traceability-task-force/implementation-plan",
+      "publisher": "Department of Agriculture, Fisheries and Forestry",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    }
+  ]
+}

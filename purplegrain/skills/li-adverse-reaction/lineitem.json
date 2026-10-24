@@ -1,0 +1,22 @@
+{
+  "name": "li-adverse-reaction",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["treatment"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": ["treatment.adverse_reaction"],
+  "notes_fields": ["record_notes:broken_needle_animal"],
+  "severity": "lpa",
+  "sources": [
+    {
+      "title": "LPA audits checklist 2025",
+      "url": "https://www.integritysystems.com.au/globalassets/isc/pdf-files/lpa-audits-checklist-2025.pdf",
+      "publisher": "Integrity Systems Company",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    }
+  ]
+}

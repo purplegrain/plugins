@@ -9,6 +9,7 @@ step() { local name=$1; shift; printf '\n\033[1m== %s\033[0m\n' "$name"; "$@" ||
 
 step "Validate the marketplace" claude plugin validate .
 step "Validate the PurpleGrain plugin" claude plugin validate ./purplegrain
+step "Check the skill catalogue" python3 scripts/check-skills.py
 step "Build skill zips" bash scripts/build-skill-zips.sh
 
 echo

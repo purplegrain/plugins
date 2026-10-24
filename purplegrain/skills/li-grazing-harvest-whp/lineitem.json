@@ -1,0 +1,34 @@
+{
+  "name": "li-grazing-harvest-whp",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["spray", "sowing", "fieldwork"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": [
+    "spray.products[].grazing_whp_days",
+    "spray.products[].harvest_whp_days",
+    "spray.products[].do_not_graze",
+    "sowing.products[role=seed_treatment].grazing_whp_days"
+  ],
+  "notes_fields": [],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "APVMA pesticides and veterinary residues",
+      "url": "https://www.apvma.gov.au/chemicals-and-products/pesticides-and-veterinary-residues",
+      "publisher": "APVMA",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "LPA-03 crop, pasture and paddock treatment record",
+      "url": "https://www.integritysystems.com.au/globalassets/isc/pdf-files/lpa-documents/lpa-records-templates/lpa-03-crop-pasture-and-paddock-treatment-record-form.pdf",
+      "publisher": "Integrity Systems Company",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    }
+  ]
+}

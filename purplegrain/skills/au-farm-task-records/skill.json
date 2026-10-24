@@ -1,0 +1,10 @@
+{
+  "name": "au-farm-task-records",
+  "version": "1.0.0",
+  "kind": "orchestrator",
+  "asset": "either",
+  "tool": "createTask",
+  "requires": ["pg-core>=1.0.0"],
+  "line_items": ["li-record-retention"],
+  "line_items_not_shipped": ["li-welfare-biosecurity-plan"]
+}

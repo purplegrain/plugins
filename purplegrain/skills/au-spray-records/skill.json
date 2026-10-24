@@ -1,0 +1,26 @@
+{
+  "name": "au-spray-records",
+  "version": "1.1.0",
+  "kind": "orchestrator",
+  "asset": "paddock",
+  "tool": "createSprayRecord",
+  "requires": ["pg-core>=1.0.0"],
+  "line_items": [
+    "li-product-batch-expiry",
+    "li-spray-rate-tank-mix",
+    "li-grazing-harvest-whp",
+    "li-spray-weather",
+    "li-buffer-drift",
+    "li-state-chem-record-rules",
+    "li-operator-credential",
+    "li-record-retention"
+  ],
+  "line_items_not_shipped": [
+    "li-export-intervals",
+    "li-apvma-permit",
+    "li-restricted-chemicals",
+    "li-application-time",
+    "li-target-crop-pest",
+    "li-equipment-calibration"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "au-mob-treatment-records",
+  "version": "2.0.0",
+  "kind": "orchestrator",
+  "asset": "mob",
+  "tool": "createTreatmentRecord",
+  "requires": ["pg-core>=1.0.0"],
+  "line_items": [
+    "li-product-batch-expiry",
+    "li-dose-liveweight",
+    "li-withholding-meat-esi",
+    "li-operator-credential",
+    "li-adverse-reaction",
+    "li-off-label-vet",
+    "li-record-retention"
+  ],
+  "line_items_not_shipped": [
+    "li-hgp-cattle",
+    "li-vetchem-state-rules",
+    "li-equipment-calibration"
+  ]
+}

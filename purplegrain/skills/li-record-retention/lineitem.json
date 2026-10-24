@@ -1,0 +1,36 @@
+{
+  "name": "li-record-retention",
+  "version": "1.0.0",
+  "applies_to": {
+    "record": ["treatment", "husbandry", "spray", "sowing", "fertiliser", "fieldwork", "movement", "feeding", "task"],
+    "state": ["any"],
+    "species": ["any"]
+  },
+  "requires": ["pg-core>=1.0.0"],
+  "fields": [],
+  "notes_fields": ["record_notes:keep_until"],
+  "severity": "legal",
+  "sources": [
+    {
+      "title": "ISC record keeping",
+      "url": "https://www.integritysystems.com.au/on-farm-assurance/record-keeping/",
+      "publisher": "Integrity Systems Company",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "LPA Rules",
+      "url": "https://www.integritysystems.com.au/globalassets/isc/pdf-files/lpa-documents/LPA-Rules/",
+      "publisher": "Integrity Systems Company",
+      "last_verified": "2026-10-19",
+      "status": "E"
+    },
+    {
+      "title": "Queensland reef regulations — sugarcane",
+      "url": "https://www.qld.gov.au/environment/agriculture/sustainable-farming/reef/reef-regulations/sugarcane",
+      "publisher": "Queensland Government",
+      "last_verified": "2026-10-23",
+      "status": "V"
+    }
+  ]
+}
