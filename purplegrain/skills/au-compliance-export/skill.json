@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "kind": "output",
   "asset": "property",
-  "tool": "getTreatmentRegister",
+  "tool": "getPropertyRegisters",
   "requires": ["pg-core>=1.0.0"],
   "line_items": [
     "li-product-batch-expiry",

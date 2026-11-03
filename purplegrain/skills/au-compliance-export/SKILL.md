@@ -11,7 +11,7 @@ This is a printout of what is stored. It is not an LPA audit, and it is not appr
 
 ## Which register
 
-`getTreatmentRegister` on the property.
+`getPropertyRegisters` on the property.
 
 | They ask for | `kind` | Scope |
 |---|---|---|

@@ -72,7 +72,7 @@ Uncertainty: those explanatory notes still read as the pre-0720 sheep form (they
 - Agricultural chemicals and feed: the 60-day question about material that was still inside a grazing withholding period when harvested, collected or first grazed.
 - The attachment repeats the animal-treatment question: product, treatment date, WHP and ESI if set.
 
-`getTreatmentRegister` with `kind: "nvd"` is PurpleGrain's list of mobs still inside a WHP or ESI. It is not a completed NVD, and an empty list is not a declaration.
+`getPropertyRegisters` with `kind: "nvd"` is PurpleGrain's list of mobs still inside a WHP or ESI. It is not a completed NVD, and an empty list is not a declaration.
 
 ## 3. APVMA ESI, WHP, wool and milk
 

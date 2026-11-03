@@ -102,4 +102,4 @@ Save this record?
 
 `createHusbandryRecord` with `body.data.type: "husbandry-record"`, `confirm: true` only after the yes. Nest outcomes as `outcomes.mark.lambs_marked`. The server sets producer and `capture_source: agent`. Send confirmed `operator`, `record_notes` and `tags` in `body.data.attributes` with the record; an omitted or blank operator defaults to the signed-in user's display name. This tool accepts `Idempotency-Key`. Do not send `broadcast` or `share_scope`. Notes follow `pg-core`. If the write fails, read the mob's records before retrying.
 
-`getMob.withholding` includes husbandry products. A husbandry with no product has no row on `getTreatmentRegister` `kind: "register"`. Say what was saved and which welfare or eID check is still open.
+`getMob.withholding` includes husbandry products. A husbandry with no product has no row on `getPropertyRegisters` `kind: "register"`. Say what was saved and which welfare or eID check is still open.

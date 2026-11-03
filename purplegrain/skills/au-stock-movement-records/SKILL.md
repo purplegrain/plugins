@@ -33,7 +33,7 @@ Store a plain task: `createTask`, asset the mob, `producer` set to the business 
 | Destination PIC, NVD or waybill serial | Notes. Do not invent a serial |
 | Transporter, if they know | Notes |
 | Whether the NLIS database was updated, and when | Notes. The receiver does that update. This task does not |
-| Withholding still running | Read `getTreatmentRegister` `kind: "nvd"` for the mob. Show the rows. Do not answer the NVD for them. An empty list is not a declaration |
+| Withholding still running | Read `getPropertyRegisters` `kind: "nvd"` for the mob. Show the rows. Do not answer the NVD for them. An empty list is not a declaration |
 | eID | `li-eid-tagging` |
 
 Sheep and goat property-to-property movements recorded on NLIS within 2 days: verified for South Australia and NSW (livestock research, 23 Oct 2026, V). Do not say every state. Cattle: electronic identification is national. The "receiver updates within 48 hours" line was not verified (U). Do not state it.
