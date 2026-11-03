@@ -13,6 +13,7 @@ claude plugin validate .               # the marketplace
 claude plugin validate ./purplegrain   # the plugin
 python3 scripts/check-skills.py        # names, field ownership, catalogue
 bash scripts/build-skill-zips.sh       # dist/<skill>.zip, one per skill
+bash scripts/build-openai-plugin.sh    # dist/openai/purplegrain-<version>.zip, the ChatGPT plugin
 ```
 
 These are the steps the `Validate` workflow runs on every pull request, on a
@@ -34,3 +35,12 @@ would run on the org Mac. Only the tag-triggered `release` job uses the Mac.
   plugin. The skill zips ship separately: pushing a `v*` tag on a commit already
   on `main` runs `validate` again and publishes `dist/*.zip` to a GitHub Release.
   Tag only on the owner's word.
+
+## The ChatGPT plugin
+
+`openai/` holds the ChatGPT plugin's manifest (`plugin.json`, OpenAI's portable layout with
+`extensions.com.openai`: listing text, review test cases, demo recording, release notes),
+`mcp.json` and `assets/`. `scripts/build-openai-plugin.sh` adds `purplegrain/skills/` and writes
+`dist/openai/purplegrain-<version>.zip`, which is uploaded at platform.openai.com/plugins.
+Raise `version` for every upload. Reviewer credentials are entered in the dashboard, never here:
+this repository is public. Tool names in the test cases must match the live MCP server.

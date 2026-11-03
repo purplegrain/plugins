@@ -99,6 +99,6 @@ Without PurpleGrain, produce the same summary as a row they can copy onto the LP
 
 `getMob` `withholding`, or `getPropertyStatus`, is the status. It includes completed treatment and husbandry products. Do not decide the mob is clear from the new record alone.
 
-`getTreatmentRegister` with `kind: "register"` is one row per product. `kind: "nvd"` is what is still inside a WHP or ESI. Pass `mob_ids` for one mob. An empty NVD view does not prove the animals can be sold or slaughtered.
+`getPropertyRegisters` with `kind: "register"` is one row per product. `kind: "nvd"` is what is still inside a WHP or ESI. Pass `mob_ids` for one mob. An empty NVD view does not prove the animals can be sold or slaughtered.
 
 Tell them what was saved, the withholding dates, and any check still open. One or two sentences, then the open checks.

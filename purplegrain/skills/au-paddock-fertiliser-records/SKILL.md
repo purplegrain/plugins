@@ -68,4 +68,4 @@ Save this record?
 
 `createFertiliserRecord`: `paddock_id`, `confirm: true`, `body.data.type: "fertiliser-record"`. A completed record needs a product row. The server sets `operation_type: fertiliser` and `capture_source: agent`. Send confirmed `operator`, `record_notes` and `tags` in `body.data.attributes` with the record; an omitted or blank operator defaults to the signed-in user's display name. This tool accepts `Idempotency-Key`. Notes follow `pg-core`.
 
-Read the task back. Do not read a withholding date off it. There is none. `getTreatmentRegister` `kind: "paddock-inputs"` is where the row prints. Fertiliser is not in the spray register and not in the NVD view.
+Read the task back. Do not read a withholding date off it. There is none. `getPropertyRegisters` `kind: "paddock-inputs"` is where the row prints. Fertiliser is not in the spray register and not in the NVD view.

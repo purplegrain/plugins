@@ -89,6 +89,6 @@ Notes and operator follow `pg-core`. If the write fails, read that paddock's spr
 
 `getPaddock.withholding` or `getPropertyStatus` is grazing and harvest status, from completed sprays and from a sowing's seed treatments. Fertiliser does not change it. `do_not_graze` does not give a date. Export intervals are not that object.
 
-`getTreatmentRegister` `kind: "spray"` with `paddock_ids` is the chemical-use register. Tell them what was saved, the dates, and any check still open.
+`getPropertyRegisters` `kind: "spray"` with `paddock_ids` is the chemical-use register. Tell them what was saved, the dates, and any check still open.
 
 Without PurpleGrain, the same summary is a row for a state spray record or the LPA paddock treatment record.

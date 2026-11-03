@@ -11,6 +11,7 @@ step "Validate the marketplace" claude plugin validate .
 step "Validate the PurpleGrain plugin" claude plugin validate ./purplegrain
 step "Check the skill catalogue" python3 scripts/check-skills.py
 step "Build skill zips" bash scripts/build-skill-zips.sh
+step "Build the ChatGPT plugin zip" bash scripts/build-openai-plugin.sh
 
 echo
 if [[ ${#failed[@]} -eq 0 ]]; then

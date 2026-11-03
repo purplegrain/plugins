@@ -49,7 +49,7 @@ Sixteen. The judge's review said to start near fifteen and leave per-state varia
 | `au-stock-movement-records` | 1.0.0 | `moveMob` for a paddock move. A sale is a note | eID, retention, operator |
 | `au-mob-feeding-records` | 1.0.0 | `createTask` (`feed`) | Retention, operator. CVD and the feed ban are inline until their line items exist |
 | `au-farm-task-records` | 1.0.0 | `createTask` (`fence`, `observation`) | Retention |
-| `au-compliance-export` | 1.0.0 | `getTreatmentRegister` | Reads the rows. Does not invent a missing value |
+| `au-compliance-export` | 1.0.0 | `getPropertyRegisters` | Reads the rows. Does not invent a missing value |
 
 `au-spray-records` keeps that name. A rename to `au-paddock-spray-records` would make one spray match two skills for anyone who still has the old zip.
 

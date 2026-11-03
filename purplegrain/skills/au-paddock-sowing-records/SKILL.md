@@ -57,4 +57,4 @@ Save this record?
 
 Read `getPaddock` for `current_crop` and `withholding`. Fertiliser and inoculant lines do not change withholding. The seed treatment's grazing interval does.
 
-`getTreatmentRegister` `kind: "paddock-inputs"` includes the sowing. A seed treatment that sets a grazing date is also visible on the paddock withholding, not as a spray row.
+`getPropertyRegisters` `kind: "paddock-inputs"` includes the sowing. A seed treatment that sets a grazing date is also visible on the paddock withholding, not as a spray row.

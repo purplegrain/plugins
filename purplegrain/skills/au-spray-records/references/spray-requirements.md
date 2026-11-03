@@ -204,7 +204,7 @@ GLOBALG.A.P. and other export GAP schemes also ask for spray diaries. The curren
 
 Keep the record in any clear form the state allows: diary, spreadsheet, or this spray record, provided the mandatory fields are actually stored. An empty weather object is not a weather record.
 
-For a PurpleGrain record, `getTreatmentRegister` with `kind: "spray"` returns one row per product: crop, area, rate, water rate, method, applicator, the first weather reading, and the grazing and harvest end dates. A value nobody entered is the text `not recorded`. That register is the printout. `record_notes` on the task holds the state fields the spray child does not have, so an inspection answer has to include those notes, not only the register row.
+For a PurpleGrain record, `getPropertyRegisters` with `kind: "spray"` returns one row per product: crop, area, rate, water rate, method, applicator, the first weather reading, and the grazing and harvest end dates. A value nobody entered is the text `not recorded`. That register is the printout. `record_notes` on the task holds the state fields the spray child does not have, so an inspection answer has to include those notes, not only the register row.
 
 Who inspects:
 

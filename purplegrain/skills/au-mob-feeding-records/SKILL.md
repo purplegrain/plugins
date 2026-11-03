@@ -26,7 +26,7 @@ LPA introduced stock-feed record and the livestock feeding record (livestock res
 | Which mobs | Yes |
 | Who is responsible | Yes |
 
-Home-grown feed does not need a CVD. The paddock's spray and seed-treatment records are the source. Point them at `getTreatmentRegister` for that paddock. Do not make them write a CVD for their own hay.
+Home-grown feed does not need a CVD. The paddock's spray and seed-treatment records are the source. Point them at `getPropertyRegisters` for that paddock. Do not make them write a CVD for their own hay.
 
 Bought hay or fodder: ask for the CVD. With no CVD, ISC states a 60-day withhold from when the stock eat the feed, and the risk assessment should be written down (23 Oct 2026, V). Put that in the notes as a reminder. It is not `getMob.withholding`. A 90-day export figure was not in the livestock or paddock research. Do not state it.
 

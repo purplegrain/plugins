@@ -17,7 +17,7 @@ Say that the skill asks for what the rules need and stores what the farmer confi
 
 On the first PurpleGrain call in a conversation, before answering a records question or writing anything:
 
-1. `fetchCurrentUser` is the signed-in user.
+1. `getCurrentUser` is the signed-in user.
 2. `listBusinessMembers` with that user's id and `include: "organization"` is the businesses they belong to.
 3. `listProperties` with no `organization_id` is personal properties only. A business's properties need that `organization_id`. For a named business, do not add personal properties or another business's properties unless the farmer asks.
 4. Read onboarding metadata off that response (see below). If there is already a property and the question is about status, `getPropertyStatus` is the status call. Do not invent an id to call it.
