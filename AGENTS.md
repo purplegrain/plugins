@@ -25,6 +25,13 @@ would run on the org Mac. Only the tag-triggered `release` job uses the Mac.
 
 ## Shipping
 
+**Ship complete, tested feature batches (owner, 2026-11-09).** Follow the cross-repo
+[batch shipping directive](https://github.com/purplegrain/app/blob/main/PRODUCT.md#batch-related-work-to-reduce-ci-usage-owner-9-november-2026): one cohesive feature or related batch per PR,
+including tests and docs. Iterate and verify locally, then batch pushes; do not ship each implementation
+step as a separate PR or use GitHub Actions as the development feedback loop. Keep required checks and
+PR-only merges. Split only for deployment/migration safety, urgent fixes or independent work, and explain why.
+Run `bash scripts/verify.sh` locally before pushing the completed batch.
+
 - **Every change reaches `main` through a pull request.** Never push to `main`
   directly, even when told it is fine; `main` is protected. Rebase on the latest
   `origin/main` before opening or updating a PR.
