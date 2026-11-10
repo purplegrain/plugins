@@ -5,7 +5,7 @@ description: "Line item for PurpleGrain record skills. Do not use directly. Wind
 
 # Spray weather
 
-Version 1.0.0. Do not call a PurpleGrain write. Record only measurements the farmer gives. A reading nobody took stays off the list. An empty object is not a weather record.
+Version 1.0.1. Do not call a PurpleGrain write. Record only measurements the farmer gives. A reading nobody took stays off the list. An empty object is not a weather record.
 
 State variants live in this one skill. Separate `li-spray-weather-qld` skills are not part of this release.
 
@@ -31,7 +31,7 @@ One `weather_readings` object per observation. This item owns that list.
 | Inversion seen, if they looked | `inversion_observed` |
 | On-site, or a station and how far | `source` |
 
-Finish time is not a second weather field. `li-state-chem-record-rules` puts start and finish in `record_notes` when the state requires them.
+Finish time is not a second weather field. The spray's start and finish are `started_at` and `completed_at` on the record; `li-state-chem-record-rules` says which states require them.
 
 ## Checks
 

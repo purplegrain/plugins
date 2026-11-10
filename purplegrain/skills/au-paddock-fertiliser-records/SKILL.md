@@ -5,7 +5,7 @@ description: "Check and save an Australian paddock fertiliser record before writ
 
 # Australian paddock fertiliser records
 
-Version 1.0.0. Follow `pg-core`. If the paddock does not exist, offer `pg-onboarding`. Do not block a read.
+Version 1.0.1. Follow `pg-core`. If the paddock does not exist, offer `pg-onboarding`. Do not block a read.
 
 Fertiliser has no withholding period and never changes a paddock's status. `getPaddock` and `getPropertyStatus` ignore it. Do not tell the farmer the paddock is held back because of a fertiliser. An `advisory_note` is advice to pass on, not a status.
 
@@ -66,6 +66,6 @@ Checks: reef catchment not asked
 Save this record?
 ```
 
-`createFertiliserRecord`: `paddock_id`, `confirm: true`, `body.data.type: "fertiliser-record"`. A completed record needs a product row. The server sets `operation_type: fertiliser` and `capture_source: agent`. Send confirmed `operator`, `record_notes` and `tags` in `body.data.attributes` with the record; an omitted or blank operator defaults to the signed-in user's display name. This tool accepts `Idempotency-Key`. Notes follow `pg-core`.
+`createFertiliserRecord`: `paddock_id`, `confirm: true`, `body.data.type: "fertiliser-record"`. A completed record saves without a product row when the farmer does not know it (API, 5 Nov 2026): ask once, never invent one. The server sets `operation_type: fertiliser` and `capture_source: agent`. Send confirmed `operator`, `record_notes` and `tags` in `body.data.attributes` with the record; an omitted or blank operator defaults to the signed-in user's display name. This tool accepts `Idempotency-Key`. Notes follow `pg-core`.
 
 Read the task back. Do not read a withholding date off it. There is none. `getPropertyRegisters` `kind: "paddock-inputs"` is where the row prints. Fertiliser is not in the spray register and not in the NVD view.

@@ -5,7 +5,7 @@ description: "Check and save an Australian paddock spray record before writing i
 
 # Australian paddock spray records
 
-Version 1.1.0. The published name stays `au-spray-records`. A second skill under another name would make the same spray match twice.
+Version 1.2.0. The published name stays `au-spray-records`. A second skill under another name would make the same spray match twice.
 
 Follow `pg-core`. If the paddock does not exist, offer `pg-onboarding`. Do not block a read.
 
@@ -39,6 +39,7 @@ Not in this release: `li-export-intervals`, `li-apvma-permit`, `li-restricted-ch
 | Field | Where it goes |
 |---|---|
 | Date | `date`. A job already done is not in the future |
+| Start and finish | `started_at` and `completed_at`, an offset date-time each. Ask for both once. Send only a time the farmer stated; an unknown one stays unset and prints `not recorded` |
 | Paddock | Resolve it first |
 | Area | `area_ha`. Omitting it stores the whole paddock. A spot spray must send the smaller area or you must ask |
 | Water rate | `water_rate` in L/ha. Anything else is stored as none |
@@ -81,7 +82,7 @@ Wait for a yes.
 
 ## 6. Save and read back
 
-`createSprayRecord`: `paddock_id`, `confirm: true`, `body.data.type: "spray-record"`. A completed spray needs at least one product. The server sets `operation_type: spray`, `capture_source: agent` and `producer`. Send confirmed `operator`, `record_notes` and `tags` in `body.data.attributes` with the spray; an omitted or blank operator defaults to the signed-in user's display name. This tool accepts `Idempotency-Key`.
+`createSprayRecord`: `paddock_id`, `confirm: true`, `body.data.type: "spray-record"`. A completed spray saves without a product when the farmer does not know it (API, 5 Nov 2026): ask once, never invent one, and the gap prints `not recorded`. The server sets `operation_type: spray`, `capture_source: agent` and `producer`. Send confirmed `operator`, `record_notes` and `tags` in `body.data.attributes` with the spray; an omitted or blank operator defaults to the signed-in user's display name. This tool accepts `Idempotency-Key`.
 
 `updateSprayRecord` uses `spray.id`, not the task id. `products` and `weather_readings` each replace the whole set.
 

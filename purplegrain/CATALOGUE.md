@@ -1,6 +1,6 @@
 # Skill catalogue
 
-Version of this list: 24 October 2026. Machine-readable copy: [skills/index.json](skills/index.json). Each folder is one installable zip (`dist/<name>.zip`). Line items do not write to PurpleGrain. The record skill writes, once per mob or paddock, after `confirm: true`.
+Version of this list: 10 November 2026. Machine-readable copy: [skills/index.json](skills/index.json). Each folder is one installable zip (`dist/<name>.zip`). Line items do not write to PurpleGrain. The record skill writes, once per mob or paddock, after `confirm: true`.
 
 These are records and reminders, not veterinary, legal or agronomic advice. A point marked unverified in a skill is a warning, not a block. Sources and last-checked dates are in the skill.
 
@@ -10,7 +10,7 @@ These are records and reminders, not veterinary, legal or agronomic advice. A po
 
 | Skill | Version | What it does |
 |---|---|---|
-| `pg-core` | 1.1.0 | First PurpleGrain call. Offers setup when the account is empty or partial. Confirm, citations, disclaimer. |
+| `pg-core` | 1.2.0 | First PurpleGrain call. Offers setup when the account is empty or partial. Confirm, citations, disclaimer. |
 | `pg-onboarding` | 1.1.0 (`pg-onboarding@1`) | Team, property and PIC, `map_boundaries`, paddocks and tenure, blocks, mobs, one real record. Resumes from `completed_steps` and `next_step`. |
 
 ## Line items shipped (the P0 set)
@@ -40,15 +40,16 @@ Sixteen. The judge's review said to start near fifteen and leave per-state varia
 
 | Skill | Version | Tool | Line items it runs |
 |---|---|---|---|
-| `au-mob-treatment-records` | 2.0.0 | `createTreatmentRecord` | Batch, dose, meat WHP and ESI, operator, adverse reaction, off-label vet, retention |
+| `au-mob-treatment-records` | 2.0.1 | `createTreatmentRecord` | Batch, dose, meat WHP and ESI, operator, adverse reaction, off-label vet, retention |
 | `au-mob-husbandry-records` | 1.0.0 | `createHusbandryRecord` | Sheep mulesing, dock and castrate, eID, plus the shared product items |
-| `au-spray-records` | 1.1.0 | `createSprayRecord` | Rate, grazing and harvest, weather, buffer, state record, operator, batch, retention |
-| `au-paddock-sowing-records` | 1.0.0 | `createSowingRecord` | Seed treatment, batch, grazing WHP, state record, operator, retention |
-| `au-paddock-fertiliser-records` | 1.0.0 | `createFertiliserRecord` | Batch, operator, retention. Fertiliser never sets a withholding |
+| `au-spray-records` | 1.2.0 | `createSprayRecord` | Rate, grazing and harvest, weather, buffer, state record, operator, batch, retention |
+| `au-paddock-sowing-records` | 1.0.1 | `createSowingRecord` | Seed treatment, batch, grazing WHP, state record, operator, retention |
+| `au-paddock-fertiliser-records` | 1.0.1 | `createFertiliserRecord` | Batch, operator, retention. Fertiliser never sets a withholding |
 | `au-paddock-fieldwork-records` | 1.0.0 | `createFieldworkRecord` | Grazing and harvest check via server warnings, state record, batch, operator, retention |
 | `au-stock-movement-records` | 1.0.0 | `moveMob` for a paddock move. A sale is a note | eID, retention, operator |
 | `au-mob-feeding-records` | 1.0.0 | `createTask` (`feed`) | Retention, operator. CVD and the feed ban are inline until their line items exist |
 | `au-farm-task-records` | 1.0.0 | `createTask` (`fence`, `observation`) | Retention |
+| `pg-tasks` | 1.0.0 | `createTask` for work still to do | None. A planned job with products hands its details to the record skill |
 | `au-compliance-export` | 1.0.0 | `getPropertyRegisters` | Reads the rows. Does not invent a missing value |
 
 `au-spray-records` keeps that name. A rename to `au-paddock-spray-records` would make one spray match two skills for anyone who still has the old zip.

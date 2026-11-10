@@ -5,7 +5,7 @@ description: "Line item for PurpleGrain record skills. Do not use directly. The 
 
 # Seed treatment
 
-Version 1.0.0. Do not call a PurpleGrain write. The sowing orchestrator saves. A completed sowing needs a seed line (`role: seed`). That line is the orchestrator's. This item applies only when the seed was treated.
+Version 1.0.1. Do not call a PurpleGrain write. The sowing orchestrator saves. The seed line (`role: seed`) is the orchestrator's; a sowing saves without one when it is not known. This item applies only when the seed was treated.
 
 ## Owns, and does not own
 

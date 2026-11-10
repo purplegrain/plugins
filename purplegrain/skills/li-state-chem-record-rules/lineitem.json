@@ -1,6 +1,6 @@
 {
   "name": "li-state-chem-record-rules",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "applies_to": {
     "record": ["spray", "sowing", "fieldwork"],
     "state": ["NSW", "VIC", "QLD", "SA", "WA", "TAS", "NT", "ACT"],
@@ -11,7 +11,6 @@
   "notes_fields": [
     "record_notes:crop_situation",
     "record_notes:target_pest",
-    "record_notes:start_finish_time",
     "record_notes:apvma_number",
     "record_notes:applicator_address",
     "record_notes:supervisor"

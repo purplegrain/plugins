@@ -5,7 +5,7 @@ description: "Check and save an Australian mob treatment before writing it to Pu
 
 # Australian mob treatment records
 
-Version 2.0.0. Husbandry moved to `au-mob-husbandry-records`. A vaccine or pain relief given on marking day stays on that husbandry record. Do not also save a treatment for the same products.
+Version 2.0.1. Husbandry moved to `au-mob-husbandry-records`. A vaccine or pain relief given on marking day stays on that husbandry record. Do not also save a treatment for the same products.
 
 Follow `pg-core`. If the account has no mob to attach this to, offer `pg-onboarding`. Do not block a read. Do not collect setup fields here.
 
@@ -26,7 +26,7 @@ If this folder is installed, `references/sheep-requirements.md` (checked 19 Oct 
 | HGP on cattle | This record, `category: hgp`. `li-hgp-cattle` is not in this release. Ask whether the triangular ear punch was done and store `hgp_earmarked` only if they say so. Do not state an EU status |
 | Paddock move, sale, or a move off the PIC | `au-stock-movement-records`. Not this skill |
 
-A completed treatment needs at least one product. Three mobs means three calls.
+A completed treatment saves without a product when the farmer does not know it (API, 5 Nov 2026): ask once, never invent one, and the gap prints `not recorded`. Three mobs means three calls.
 
 `category`: `drench`, `fluke`, `lice`, `flystrike`, `other_external_parasite`, `vaccine`, `vitamin_mineral`, `antibiotic`, `pain_relief`, `feed_water_additive`, `foot_treatment`, `reproductive`, `hgp`, `other`.
 
