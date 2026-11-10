@@ -5,11 +5,11 @@ description: "Check and save an Australian paddock sowing record before writing 
 
 # Australian paddock sowing records
 
-Version 1.0.0. Follow `pg-core`. If the paddock does not exist, offer `pg-onboarding`. Do not block a read.
+Version 1.0.1. Follow `pg-core`. If the paddock does not exist, offer `pg-onboarding`. Do not block a read.
 
 This is a record. It is not agronomy advice. The seed label and the technology agreement, when there is one, are the farmer's authority. Completing a sowing sets the paddock's `current_crop` to the seed line's `variety`, otherwise to `crop`. Read that back with `getPaddock`.
 
-A completed sowing with no seed line is refused.
+A completed sowing saves without a seed line when the farmer does not know it (API, 5 Nov 2026): ask once, never invent a variety, and the gap prints `not recorded`.
 
 ## 1. Fields
 

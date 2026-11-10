@@ -1,0 +1,10 @@
+{
+  "name": "pg-tasks",
+  "version": "1.0.0",
+  "kind": "orchestrator",
+  "asset": "either",
+  "tool": "createTask",
+  "requires": ["pg-core>=1.2.0"],
+  "line_items": [],
+  "line_items_not_shipped": []
+}

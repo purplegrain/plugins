@@ -5,7 +5,7 @@ description: "Line item for PurpleGrain record skills. Do not use directly. Whic
 
 # State chemical-use records
 
-Version 1.0.0. Do not call a PurpleGrain write. This item picks the row. It does not re-ask for batch, rate, weather, buffers or the operator. Those have their own line items. It asks only for the leftover facts in the last table, and it tells `li-record-retention` which state period to compare.
+Version 1.0.1. Do not call a PurpleGrain write. This item picks the row. It does not re-ask for batch, rate, weather, buffers or the operator. Those have their own line items. It asks only for the leftover facts in the last table, and it tells `li-record-retention` which state period to compare.
 
 Ask the state once per property. `pg-onboarding` collects it for parcel search. API #239 and #240 do not add a `state` column, so do not send `state` on the property. If you were not told the state in this conversation, ask. Do not infer a state from a town name.
 
@@ -56,7 +56,7 @@ No line item owns these yet. Ask them and put the answers in `record_notes`. `li
 | Fact | Ask when |
 |---|---|
 | Crop or situation, and target weed, pest or disease | NSW, Queensland, Victoria, NT, ACT, and a Freshcare property. Also WA (crop or situation) |
-| Start and finish time | NT, ACT, WA (date and time), NSW licensed applicators, and a Freshcare record. If a weather reading is stored, the start can be that reading's `read_at`. Finish has no weather field |
+| Start and finish time | NT, ACT, WA (date and time), NSW licensed applicators, and a Freshcare record. They are the record's `started_at` and `completed_at`, which the orchestrator sends: an offset date-time each, only when the farmer stated the time. A weather reading's `read_at` is that reading's time, not the start |
 | APVMA registration number | NT, and whenever the product name is ambiguous. Also Queensland, which accepts the trade name or the APVMA number |
 | Applicator address | NSW. Victoria wants name and contact, which `li-operator-credential` already asks |
 | Supervisor, and the person the spray was for | Victoria, when there is one. Queensland wants user, owner and supervisor contacts |

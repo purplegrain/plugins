@@ -5,7 +5,7 @@ description: "Use on the first PurpleGrain call in a conversation and before any
 
 # PurpleGrain core
 
-Version 1.1.0. Every PurpleGrain record skill follows this. It does not collect the fields of a drench, a spray or any other job, and it does not write those records.
+Version 1.2.0. Every PurpleGrain record skill follows this. It does not collect the fields of a drench, a spray or any other job, and it does not write those records.
 
 ## Disclaimer
 
@@ -73,6 +73,7 @@ Read whichever of these the response actually has. Agents do not reliably see MC
 | Mob to another paddock on the same property, or a sale, agistment or move off the PIC | `au-stock-movement-records` |
 | Feeding stock, or fodder bought in | `au-mob-feeding-records` |
 | Fencing, or something they saw | `au-farm-task-records` |
+| Work still to do: a job to put on the list, a plan, a reminder, a job for a contractor | `pg-tasks` |
 | The register, an audit pack, or what is still not recorded | `au-compliance-export` |
 
 A photo of a label or a paper sheet: read what is there, mark anything you cannot read as UNCLEAR, and confirm those values. Never guess a product, batch, rate, dose or interval.
@@ -83,7 +84,7 @@ A photo of a label or a paper sheet: read what is there, mark anything you canno
 
 **One write per asset.** Three mobs are three records. One confirm can cover them when the product is shared; show head, batch or paddock differences as rows. A block is not a record.
 
-**Ask in rounds.** Only missing fields, one or two a turn. Legal checks first, then LPA, then best practice. After two rounds, offer to save with the gaps listed. An unknown value stays unset and prints `not recorded`. Never invent a batch, expiry, dose, rate, withholding period, wind, head count, PIC or analysis.
+**Ask in rounds.** Only missing fields, one or two a turn. Legal checks first, then LPA, then best practice. After two rounds, offer to save with the gaps listed. An unknown value stays unset and prints `not recorded`. Never invent a batch, expiry, dose, rate, withholding period, wind, time of day, head count, PIC or analysis.
 
 **Line items.** A line item decides what to ask and what to flag for the fields it owns. It never calls a PurpleGrain write. The orchestrator is the only skill that creates the record. If a line item is not installed, still ask for the fields named in the orchestrator's table, and say the detailed check was skipped. Two line items do not write the same API field. The stricter verified rule wins (state over national, label over a default). Name which rule you applied.
 
@@ -92,6 +93,8 @@ A photo of a label or a paper sheet: read what is there, mark anything you canno
 **Intervals.** Never store a shorter withholding period than the label they are holding. If you calculate an end date, say which day you are using. Do not decide that a mob or paddock is clear by reading the new record. Read `getMob.withholding`, `getPaddock.withholding` or `getPropertyStatus`.
 
 **Citing.** When you state a deadline, an age, an eID date or another regulatory figure, name the source and the date that source was last checked, from the line item. Do not replace that date with today.
+
+**Times.** Start and finish are `started_at` and `completed_at` on the record, as offset date-times (`2026-09-28T07:30:00+10:00`). Send a time only when the farmer stated it; never estimate one. Left out, the start is `not recorded` and the finish is stored as midday on `date`, which is a placeholder and not a stated time. `createTask`, `updateTask` and the six typed creates and updates accept both. A task has no due date: a deadline the farmer names ("by Friday") stays in their words in `description`.
 
 **Voice.** Repeat a batch, a rate or a dose back before the confirm.
 
