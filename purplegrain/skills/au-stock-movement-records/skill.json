@@ -1,6 +1,6 @@
 {
   "name": "au-stock-movement-records",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "kind": "orchestrator",
   "asset": "mob",
   "tool": "moveMob",

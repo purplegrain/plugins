@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "updated": "2026-11-10",
+  "updated": "2026-11-13",
   "onboarding_skill": "pg-onboarding@1",
   "onboarding_skill_url": "https://github.com/purplegrain/plugins/blob/main/purplegrain/skills/pg-onboarding/SKILL.md",
   "note": "Master list of skill texts in this repository. The connector may serve the same SKILL.md files. It does not add a rule that is not here.",
   "skills": [
-    {"name": "pg-core", "version": "1.2.0", "kind": "core", "path": "purplegrain/skills/pg-core/SKILL.md"},
+    {"name": "pg-core", "version": "1.3.0", "kind": "core", "path": "purplegrain/skills/pg-core/SKILL.md"},
     {"name": "pg-onboarding", "version": "1.1.0", "kind": "onboarding", "skill_id": "pg-onboarding@1", "path": "purplegrain/skills/pg-onboarding/SKILL.md", "skill_url": "https://github.com/purplegrain/plugins/blob/main/purplegrain/skills/pg-onboarding/SKILL.md"},
     {"name": "li-adverse-reaction", "version": "1.0.0", "kind": "line-item", "path": "purplegrain/skills/li-adverse-reaction/SKILL.md"},
     {"name": "li-buffer-drift", "version": "1.0.0", "kind": "line-item", "path": "purplegrain/skills/li-buffer-drift/SKILL.md"},
@@ -32,7 +32,7 @@
     {"name": "au-paddock-fieldwork-records", "version": "1.0.0", "kind": "orchestrator", "path": "purplegrain/skills/au-paddock-fieldwork-records/SKILL.md"},
     {"name": "au-paddock-sowing-records", "version": "1.0.1", "kind": "orchestrator", "path": "purplegrain/skills/au-paddock-sowing-records/SKILL.md"},
     {"name": "au-spray-records", "version": "1.2.0", "kind": "orchestrator", "path": "purplegrain/skills/au-spray-records/SKILL.md"},
-    {"name": "au-stock-movement-records", "version": "1.0.0", "kind": "orchestrator", "path": "purplegrain/skills/au-stock-movement-records/SKILL.md"},
+    {"name": "au-stock-movement-records", "version": "1.1.0", "kind": "orchestrator", "path": "purplegrain/skills/au-stock-movement-records/SKILL.md"},
     {"name": "pg-tasks", "version": "1.0.0", "kind": "orchestrator", "path": "purplegrain/skills/pg-tasks/SKILL.md"}
   ]
 }
