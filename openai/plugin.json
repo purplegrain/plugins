@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "purplegrain",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Farm records and contractors for Australian growers.",
   "author": {
     "name": "PurpleGrain PTY LTD",
@@ -42,7 +42,7 @@
       },
       "publication": {
         "countries": [],
-        "release_notes": "Addresses the review of v1.0.0. Tool naming and descriptions: every tool has a short plain-language description of what it does, when to use it and its side effects, with no API boilerplate or preferential wording; misleading names are renamed (getCurrentUser, disconnectAssistant, getAssistantConnection, updateAssistantConnectionAccess, likeContractor, unlikeContractor, replaceTaskImages, getPropertyRegisters, listPaddockOrMobRecords, stagePhotoUpload). Sensitive data: the IP-address city lookup, the Google place resolver, the user lookup by email and the subscription (billing) tools are no longer available to assistants. Personal identifiers: tool responses no longer include email addresses or phone numbers of users, clients or invitees; the only contact details returned are those of the grower or provider on a publicly listed task. Adds the PurpleGrain record-checking skills, with pg-onboarding as the onboarding skill."
+        "release_notes": "Adds the pg-tasks skill (check and save work still to do, kept separate from records) and updates the record skills and pg-core: start and finish times are record fields, records save without a product, and stock moves resolve using active paddocks only. No tool was added or removed; the tool names in the review test cases match the live server."
       },
       "review": {
         "test_cases": {
