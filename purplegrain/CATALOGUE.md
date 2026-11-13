@@ -10,7 +10,7 @@ These are records and reminders, not veterinary, legal or agronomic advice. A po
 
 | Skill | Version | What it does |
 |---|---|---|
-| `pg-core` | 1.2.0 | First PurpleGrain call. Offers setup when the account is empty or partial. Confirm, citations, disclaimer. |
+| `pg-core` | 1.3.0 | First PurpleGrain call. Offers setup when the account is empty or partial. Confirm, citations, disclaimer. |
 | `pg-onboarding` | 1.1.0 (`pg-onboarding@1`) | Team, property and PIC, `map_boundaries`, paddocks and tenure, blocks, mobs, one real record. Resumes from `completed_steps` and `next_step`. |
 
 ## Line items shipped (the P0 set)
@@ -46,7 +46,7 @@ Sixteen. The judge's review said to start near fifteen and leave per-state varia
 | `au-paddock-sowing-records` | 1.0.1 | `createSowingRecord` | Seed treatment, batch, grazing WHP, state record, operator, retention |
 | `au-paddock-fertiliser-records` | 1.0.1 | `createFertiliserRecord` | Batch, operator, retention. Fertiliser never sets a withholding |
 | `au-paddock-fieldwork-records` | 1.0.0 | `createFieldworkRecord` | Grazing and harvest check via server warnings, state record, batch, operator, retention |
-| `au-stock-movement-records` | 1.0.0 | `moveMob` for a paddock move. A sale is a note | eID, retention, operator |
+| `au-stock-movement-records` | 1.1.0 | `moveMob` for a paddock move. A sale is a note | eID, retention, operator |
 | `au-mob-feeding-records` | 1.0.0 | `createTask` (`feed`) | Retention, operator. CVD and the feed ban are inline until their line items exist |
 | `au-farm-task-records` | 1.0.0 | `createTask` (`fence`, `observation`) | Retention |
 | `pg-tasks` | 1.0.0 | `createTask` for work still to do | None. A planned job with products hands its details to the record skill |

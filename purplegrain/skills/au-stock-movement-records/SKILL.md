@@ -5,13 +5,15 @@ description: "Check and save an Australian stock movement. Use when a mob moves 
 
 # Australian stock movements
 
-Version 1.0.0. Follow `pg-core`. If the mob or the destination paddock does not exist, offer `pg-onboarding`. Do not block a read.
+Version 1.1.0. Follow `pg-core`. If the mob or the destination paddock does not exist, offer `pg-onboarding`. Do not block a read.
 
 This skill does not update the NLIS database and does not fill in an NVD. It records what the farmer said, and it shows withholding rows they must not ignore.
 
 ## 1. On the same property
 
 `moveMob` only. Destination: a live paddock on the mob's own property, not the paddock it is already in. `capture_source: "agent"`. `completed_at` when they are writing a past move. `confirm: true` after they agree the mob and the paddock.
+
+**Move destinations.** Use `listPaddocks` with the mob's `property_id` and `archived: "false"`; follow pagination before concluding there is no match. Exclude archived paddocks before matching names or presenting choices, including rows from `getPropertyPicture`, which includes archives. An exact archived name never outranks an active candidate. Exclude the current paddock too. Ask which active paddock when names are ambiguous; when none match, explain that and ask for clarification. Never automatically restore or create a paddock, widen the search to archives or another property, or bypass a refused move with another write tool. If the destination is archived or deleted before saving, refresh the active list and confirm the new choice. Archives remain available for history and explicitly requested archive searches; an archived origin in an existing record remains valid history. Back-dating does not make an archived destination eligible.
 
 The origin is worked out by the server. The first move of a mob that has never been placed has no "from". Back-dating a move behind a newer one files the diary entry and leaves the current paddock where the newest completed record says it is. Say that if they are back-dating.
 

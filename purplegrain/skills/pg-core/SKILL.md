@@ -5,7 +5,7 @@ description: "Use on the first PurpleGrain call in a conversation and before any
 
 # PurpleGrain core
 
-Version 1.2.0. Every PurpleGrain record skill follows this. It does not collect the fields of a drench, a spray or any other job, and it does not write those records.
+Version 1.3.0. Every PurpleGrain record skill follows this. It does not collect the fields of a drench, a spray or any other job, and it does not write those records.
 
 ## Disclaimer
 
@@ -81,6 +81,8 @@ A photo of a label or a paper sheet: read what is there, mark anything you canno
 ## Shared rules for every record
 
 **Confirm.** `confirm: true` only after the farmer has said yes to the summary. A yes to an earlier question is not a yes to the save. Show the summary again if a figure changes.
+
+**Move destinations.** Use `listPaddocks` with the mob's `property_id` and `archived: "false"`; follow pagination before concluding there is no match. Exclude archived paddocks before matching names or presenting choices, including rows from `getPropertyPicture`, which includes archives. An exact archived name never outranks an active candidate. Exclude the current paddock too. Ask which active paddock when names are ambiguous; when none match, explain that and ask for clarification. Never automatically restore or create a paddock, widen the search to archives or another property, or bypass a refused move with another write tool. If the destination is archived or deleted before saving, refresh the active list and confirm the new choice. Archives remain available for history and explicitly requested archive searches; an archived origin in an existing record remains valid history. Back-dating does not make an archived destination eligible.
 
 **One write per asset.** Three mobs are three records. One confirm can cover them when the product is shared; show head, batch or paddock differences as rows. A block is not a record.
 
